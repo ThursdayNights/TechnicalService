@@ -1,0 +1,157 @@
+<div id="old--login">
+  <p class="user-context">Vicus</p>
+</div>
+<!-- LOGIN -->
+<div id="old-login" class="container mt-5 content">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+      <div class="card">
+        <div class="card-body">
+          <h3>Log In</h3>
+          <form>
+            <div class="mb-3">
+              <input
+                type="username"
+                class="form-control"
+                id="username"
+                placeholder="Username"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Password"
+              />
+            </div>
+            <!-- <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="rememberMe"
+                />
+                <label class="form-check-label" for="rememberMe">
+                  Remember Me
+                </label>
+              </div> -->
+            <button
+              type="submit"
+              class="btn btn-dark w-100"
+              onclick="handleLogin(event)"
+            >
+              LOG IN
+            </button>
+            <p class="mt-3">
+              Forgot your password?
+              <a href="#">Use a one-time code</a>
+            </p>
+          </form>
+          <br />
+          <h3>Don't have an account yet?</h3>
+          <button class="btn btn-dark mb-4">REGISTER</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- CLIENT LANDING ZONE -->
+<div id="old-client-landing" class="container mt-5 content">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+      <div class="card">
+        <div class="card-body">
+          <h2>What would you like to do ?</h2>
+          <h3>Please select an option from the menu above</h3>
+          <br />
+          <button
+            type="submit"
+            class="btn btn-dark w-100"
+            onclick="handleNavClick('new-request-nav')"
+          >
+            New Request
+          </button>
+          <br />
+          <br />
+          <button
+            type="submit"
+            class="btn btn-dark w-100"
+            onclick="handleNavClick('works-history-nav')"
+          >
+            Existing Request
+          </button>
+        </div>
+        <br />
+        <img class="landing-image" src="images/Arburg.png" alt="Arburg" />
+        <p>
+          Call us for a qoute on the super efficient Arburg electric all rounder
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!--NEW REQUEST -->
+<div id="old-new-request" class="container mt-5 content">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+      <div class="card">
+        <div class="card-body">
+          <h3>New Request</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- WORKS ORDER -->
+<div id="old-works-order" class="container mt-5 content">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+      <div class="card">
+        <div class="card-body">
+          <h2>Works Order</h2>
+          <br />
+          <p id="worksordernumber"></p>
+          <p id="created-date"></p>
+          <p id="description"></p>
+          <p id="technician"></p>
+          <p id="equipment"></p>
+          <p id="status"></p>
+
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- WORKS HISTORY -->
+<div id="old-works-history" class="container mt-5 content">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+      <div class="card">
+        <div class="card-body">
+          <h3>Work History</h3>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody id="works-history-table"></tbody>
+          </table>
+          <br />
+          <button
+            type="submit"
+            class="btn btn-dark w-100"
+            onclick="handleNavClick('new-request-nav')"
+          >
+            New Request
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
