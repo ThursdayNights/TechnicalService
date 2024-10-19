@@ -194,6 +194,38 @@
           <div class="card">
             <div class="card-body">
               <h3>Log In</h3>
+              <form>
+                <div class="mb-3">
+                  <input
+                    type="username"
+                    class="form-control"
+                    id="username"
+                    placeholder="Username"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Password"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="handleLogin(event)"
+                >
+                  LOG IN
+                </button>
+                <p class="mt-3">
+                  Forgot your password?
+                  <a href="#">Use a one-time code</a>
+                </p>
+              </form>
+              <br />
+              <h3>Don't have an account yet?</h3>
+              <button class="btn btn-dark w-50">REGISTER</button>
             </div>
           </div>
         </div>
@@ -206,8 +238,32 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>client-landing</h3>
+              <h2>What would you like to do ?</h2>
+              <h3>Please select an option from the menu above</h3>
+              <br />
+              <button
+                type="submit"
+                class="btn btn-dark w-50"
+                onclick="handleNavClick('new-request-nav')"
+              >
+                New Request
+              </button>
+              <br />
+              <br />
+              <button
+                type="submit"
+                class="btn btn-dark w-50"
+                onclick="handleNavClick('works-history-nav')"
+              >
+                Existing Request
+              </button>
             </div>
+            <br />
+            <img class="landing-image" src="images/Arburg.png" alt="Arburg" />
+            <p>
+              Call us for a qoute on the super efficient Arburg electric all
+              rounder
+            </p>
           </div>
         </div>
       </div>
@@ -219,7 +275,57 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>new-request</h3>
+              <h3>Request Service</h3>
+              <form>
+                <div class="mb-3">
+                  <label for="service-type" class="form-label">
+                    Service Type
+                  </label>
+                  <select class="form-select" id="service-type">
+                    <option selected>Select Service Type</option>
+                    <option value="maintenance">Maintenance</option>
+                    <option value="repair">Repair</option>
+                    <option value="installation">Installation</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="technician" class="form-label">Technician</label>
+                  <select class="form-select" id="technician">
+                    <option selected>Select Technician</option>
+                    <option value="tech1">Technician 1</option>
+                    <option value="tech2">Technician 2</option>
+                    <option value="tech3">Technician 3</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="equipment" class="form-label">Equipment</label>
+                  <select class="form-select" id="equipment">
+                    <option selected>Select Equipment</option>
+                    <option value="equip1">Equipment 1</option>
+                    <option value="equip2">Equipment 2</option>
+                    <option value="equip3">Equipment 3</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="wo-description" class="form-label">
+                    WO Description
+                  </label>
+                  <textarea
+                    class="form-control"
+                    id="wo-description"
+                    rows="3"
+                  ></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="date" class="form-label">Date</label>
+                  <input type="date" class="form-control" id="date" />
+                </div>
+                <div class="mb-3">
+                  <label for="time" class="form-label">Time</label>
+                  <input type="time" class="form-control" id="time" />
+                </div>
+                <button type="submit" class="btn btn-dark w-50">Submit</button>
+              </form>
             </div>
           </div>
         </div>
@@ -232,7 +338,67 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>confirm-request</h3>
+              <h3>Confirm Service</h3>
+              <form>
+                <div class="mb-3">
+                  <label for="client-name" class="form-label">
+                    Client Name
+                  </label>
+                  <textarea
+                    class="form-control"
+                    id="client-name"
+                    rows="1"
+                  ></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="service-type" class="form-label">
+                    Service Type
+                  </label>
+                  <select class="form-select" id="service-type">
+                    <option selected>Select Service Type</option>
+                    <option value="maintenance">Maintenance</option>
+                    <option value="repair">Repair</option>
+                    <option value="installation">Installation</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="technician" class="form-label">Technician</label>
+                  <select class="form-select" id="technician">
+                    <option selected>Select Technician</option>
+                    <option value="tech1">Technician 1</option>
+                    <option value="tech2">Technician 2</option>
+                    <option value="tech3">Technician 3</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="equipment" class="form-label">Equipment</label>
+                  <select class="form-select" id="equipment">
+                    <option selected>Select Equipment</option>
+                    <option value="equip1">Equipment 1</option>
+                    <option value="equip2">Equipment 2</option>
+                    <option value="equip3">Equipment 3</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="wo-description" class="form-label">
+                    WO Description
+                  </label>
+                  <textarea
+                    class="form-control"
+                    id="wo-description"
+                    rows="3"
+                  ></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="date" class="form-label">Date</label>
+                  <input type="date" class="form-control" id="date" />
+                </div>
+                <div class="mb-3">
+                  <label for="time" class="form-label">Time</label>
+                  <input type="time" class="form-control" id="time" />
+                </div>
+                <button type="submit" class="btn btn-dark w-50">Submit</button>
+              </form>
             </div>
           </div>
         </div>
@@ -245,7 +411,27 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>view-requests</h3>
+              <h3>Work History</h3>
+            </div>
+            <div class="card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="works-history-table"></tbody>
+              </table>
+              <br />
+              <button
+                type="submit"
+                class="btn btn-dark w-50"
+                onclick="handleNavClick('x')"
+              >
+                New Request
+              </button>
             </div>
           </div>
         </div>
@@ -259,6 +445,120 @@
           <div class="card">
             <div class="card-body">
               <h3>view-request</h3>
+            </div>
+            <div id="cancel-service">
+              <button type="submit" class="btn btn-dark w-50">
+                Cancel Service
+              </button>
+            </div>
+            <br />
+            <div id="approve-service">
+              <button type="submit" class="btn btn-dark w-50">
+                Approve Service
+              </button>
+            </div>
+            <br />
+            <form>
+              <div class="mb-3">
+                <label for="service-number" class="form-label">
+                  Service Number
+                </label>
+                <textarea
+                  class="form-control"
+                  id="service-number"
+                  rows="1"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="service-type" class="form-label">
+                  Service Type
+                </label>
+                <textarea
+                  class="form-control"
+                  id="service-type"
+                  rows="1"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="technician" class="form-label">Technician</label>
+                <textarea
+                  class="form-control"
+                  id="technician"
+                  rows="1"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="equipment" class="form-label">Equipment</label>
+                <textarea
+                  class="form-control"
+                  id="equipment"
+                  rows="1"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="wo-description" class="form-label">
+                  WO Description
+                </label>
+                <textarea
+                  class="form-control"
+                  id="wo-description"
+                  rows="3"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="wo-description" class="form-label">
+                  WO Description
+                </label>
+                <textarea
+                  class="form-control"
+                  id="wo-description"
+                  rows="3"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="parts" class="form-label">Parts</label>
+                <textarea class="form-control" id="parts" rows="3"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="labour" class="form-label">Labour</label>
+                <textarea class="form-control" id="labour" rows="3"></textarea>
+              </div>
+            </form>
+            <div id="update-request">
+              <button type="submit" class="btn btn-dark w-50">
+                Update Request
+              </button>
+              <br /><br />
+              <h4>NOTES:</h4>
+              <br />
+              <p>Would you like to leave us a note?</p>
+              <div id = "new-note">
+                <button type="submit" class="btn btn-dark w-50">
+                  New Note
+                </button>
+            </div>
+            <br>
+            <div id="notes">
+              <div id = "note-1">
+                <form>
+                  <!-- Date (text) , Name (text) , Note (text) -->
+                  <div class="mb-3">
+                    <label for="date" class="form-label">Date</label>
+                    <textarea class="form-control" id="date" rows="1"></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <textarea class="form-control" id="name" rows="1"></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="note" class="form-label">Note</label>
+                    <textarea class="form-control" id="note" rows="3"></textarea>
+                  </div>
+                  <button id = "edit-note" type="submit" class="btn btn-dark w-25">
+                    Edit
+                </form>
+              </div>
+              <br>
             </div>
           </div>
         </div>
