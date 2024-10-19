@@ -26,6 +26,10 @@ function handleLogin(event) {
   }
 
   alert(globalState.type);
+}
 
-  //   handleNavClick("client-landing");
+function handleButtonNavigation(href) {
+  // navigate to href specified
+  // e.g. "approve-works-order" navigates to href="#approve-works-order"
+  window.location.href = `#${href}`;
 }
