@@ -203,20 +203,35 @@ function populateDropowns() {
     var option = document.createElement("option");
     option.text = type;
     serviceTypeDropdown.add(option);
-    serviceTypeUpdateDropdown.add(option);
   });
 
   service.forEach((tech) => {
     var option = document.createElement("option");
     option.text = tech;
     technicianDropdown.add(option);
-    technicianUpdateDropdown.add(option);
   });
 
   equipment.forEach((equip) => {
     var option = document.createElement("option");
     option.text = equip;
     equipmentDropdown.add(option);
+  });
+
+  serviceTypes.forEach((type) => {
+    var option = document.createElement("option");
+    option.text = type;
+    serviceTypeUpdateDropdown.add(option);
+  });
+
+  service.forEach((tech) => {
+    var option = document.createElement("option");
+    option.text = tech;
+    technicianUpdateDropdown.add(option);
+  });
+
+  equipment.forEach((equip) => {
+    var option = document.createElement("option");
+    option.text = equip;
     equipmentUpdateDropdown.add(option);
   });
 }
