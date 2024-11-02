@@ -12,6 +12,7 @@
   </head>
   <body>
     <!-- NAVIGATION -->
+    <!-- TODO - Update links -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Hestico Service Centre</a>
@@ -186,53 +187,82 @@
         </div>
       </div>
     </nav>
+    <!-- BODY -->
 
-    <!-- CONTENT -->
     <!--login -->
-    <div id="login" class="container mt-5 content">
+    <div id="login-screen" class="container mt-5 content">
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>Log In</h3>
+              <h3>login</h3>
               <form>
-                <div class="mb-3">
-                  <!-- dropdown list -->
-                  <label for="username" class="form-label">Select User for Demo</label>
-                  <select class="form-select" id="username">
-                  <option selected>Select User</option>
-                  <option value="BIC">JHB - BIC</option>
-                  <option value="ADV">JHB - ADV</option>
-                  <option value="Pharma-Pack">DBN - Pharma-Pack</option>
-                  <option value="Lourens">JHB - Lourens</option>
-                  <option value="Andries">JHB - Andries</option>
-                  <option value="Craig">DBN - Craig</option>
-                  <option value="Gus">CPT - Gus</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  placeholder="Not Required for Demo"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  class="btn btn-dark w-50"
-                  onclick="handleLogin(event);handleNavigation('login')"
-                >
-                  LOG IN
-                </button>
-                <p class="mt-3">
-                  Forgot your password?
-                  <a href="#" onclick="alert('Functionality Under Construction')">Use a one-time code</a>
-                </p>
+                <div class="mb-3"></div>
               </form>
-              <br />
-              <h3>Don't have an account yet?</h3>
-              <button class="btn btn-dark w-50" onclick="alert('Functionality Under Construction')">REGISTER</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--update-password -->
+    <div id="update-password-screen" class="container mt-5 content">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+          <div class="card">
+            <div class="card-body">
+              <h3>update-password</h3>
+              <form>
+                <div class="mb-3"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--reset-password -->
+    <div id="reset-password-screen" class="container mt-5 content">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+          <div class="card">
+            <div class="card-body">
+              <h3>reset-password</h3>
+              <form>
+                <div class="mb-3"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--register -->
+    <div id="register-screen" class="container mt-5 content">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+          <div class="card">
+            <div class="card-body">
+              <h3>register</h3>
+              <form>
+                <div class="mb-3"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--register-landing -->
+    <div id="register-landing-screen" class="container mt-5 content">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+          <div class="card">
+            <div class="card-body">
+              <h3>register-landing</h3>
+              <form>
+                <div class="mb-3"></div>
+              </form>
             </div>
           </div>
         </div>
@@ -240,95 +270,14 @@
     </div>
 
     <!--client-landing -->
-    <div id="client-landing" class="container mt-5 content">
+    <div id="client-landing-screen" class="container mt-5 content">
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h2>What would you like to do ?</h2>
-              <h3>Please select an option from the menu above</h3>
-              <br />
-              <button
-                type="submit"
-                class="btn btn-dark w-50"
-                onclick="handleNavigation('client-landing-new-request')"
-              >
-                New Request
-              </button>
-              <br />
-              <br />
-              <button
-                type="submit"
-                class="btn btn-dark w-50"
-                onclick="handleNavigation('client-landing-existing-request')"
-              >
-                Existing Request
-              </button>
-            </div>
-            <br />
-            <img class="landing-image" src="images/Arburg.png" alt="Arburg" />
-            <p>
-              Call us for a qoute on the super efficient Arburg electric all
-              rounder
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!--new-request -->
-    <div id="new-request" class="container mt-5 content">
-      <div class="row justify-content-center">
-        <div class="col-md-6 text-center">
-          <div class="card">
-            <div class="card-body">
-              <h3>Request Service</h3>
+              <h3>client-landing</h3>
               <form>
-                <!-- service-type-new-request -->
-                <div class="mb-3">
-                  <label for="service-type" class="form-label">
-                    Service Type
-                  </label>
-                  <select class="form-select" id="service-type-new-request">
-                    <option selected>Select Service Type</option>
-                  </select>
-                </div>
-                <!-- technician-new-request -->
-                <div class="mb-3">
-                  <label for="technician" class="form-label">Technician</label>
-                  <select class="form-select" id="technician-new-request">
-                    <option selected>Select Technician</option>
-                  </select>
-                </div>
-                <!-- equipment-new-request -->
-                <div class="mb-3">
-                  <label for="equipment" class="form-label">Equipment</label>
-                  <select class="form-select" id="equipment-new-request">
-                    <option selected>Select Equipment</option>
-                  </select>
-                </div>
-                <!-- wo-description-new-request -->
-                <div class="mb-3">
-                  <label for="wo-description-new-request" class="form-label">
-                    WO Description
-                  </label>
-                  <textarea
-                    class="form-control"
-                    id="wo-description-new-request"
-                    rows="3"
-                  ></textarea>
-                </div>
-                <!-- date-new-request -->
-                <div class="mb-3">
-                  <label for="date" class="form-label">Date</label>
-                  <input type="date" class="form-control" id="date-new-request" />
-                </div>
-                <!-- time-new-request -->
-                <div class="mb-3">
-                  <label for="time" class="form-label">Time</label>
-                  <input type="time" class="form-control" id="time-new-request" />
-                </div>
-                <button type="submit" class="btn btn-dark w-50" onclick="handleNewRequest(event); handleNavigation('new-request')">Submit</button>
+                <div class="mb-3"></div>
               </form>
             </div>
           </div>
@@ -336,72 +285,15 @@
       </div>
     </div>
 
-    <!--confirm-request -->
-    <div id="confirm-request" class="container mt-5 content">
+    <!--work-history -->
+    <div id="work-history-screen" class="container mt-5 content">
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>Confirm Service</h3>
+              <h3>work-history</h3>
               <form>
-                <div class="mb-3">
-                  <label for="client-name" class="form-label">
-                    Client Name
-                  </label>
-                  <textarea
-                    class="form-control"
-                    id="client-name"
-                    rows="1"
-                  ></textarea>
-                </div>
-                <div class="mb-3">
-                  <label for="service-type" class="form-label">
-                    Service Type
-                  </label>
-                  <select class="form-select" id="service-type-confirm-request">
-                    <option selected>Select Service Type</option>
-                    <option value="maintenance">Maintenance</option>
-                    <option value="repair">Repair</option>
-                    <option value="installation">Installation</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="technician" class="form-label">Technician</label>
-                  <select class="form-select" id="technician-confirm-request">
-                    <option selected>Select Technician</option>
-                    <option value="tech1">Technician 1</option>
-                    <option value="tech2">Technician 2</option>
-                    <option value="tech3">Technician 3</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="equipment" class="form-label">Equipment</label>
-                  <select class="form-select" id="equipment-confirm-request">
-                    <option selected>Select Equipment</option>
-                    <option value="equip1">Equipment 1</option>
-                    <option value="equip2">Equipment 2</option>
-                    <option value="equip3">Equipment 3</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="wo-description" class="form-label">
-                    WO Description
-                  </label>
-                  <textarea
-                    class="form-control"
-                    id="wo-description-confirm-request"
-                    rows="3"
-                  ></textarea>
-                </div>
-                <div class="mb-3">
-                  <label for="date" class="form-label">Date</label>
-                  <input type="date" class="form-control" id="date-client-name" />
-                </div>
-                <div class="mb-3">
-                  <label for="time" class="form-label">Time</label>
-                  <input type="time" class="form-control" id="time" />
-                </div>
-                <button type="submit" class="btn btn-dark w-50">Submit</button>
+                <div class="mb-3"></div>
               </form>
             </div>
           </div>
@@ -409,37 +301,16 @@
       </div>
     </div>
 
-    <!--view-requests -->
-    <div id="view-requests" class="container mt-5 content">
+    <!--all-messages -->
+    <div id="all-messages-screen" class="container mt-5 content">
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>Request History</h3>
-            </div>
-            <p> Click on any status button to view a Request</p>
-            <div class="card-body">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Service Number</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Status</th>
-                  </tr>
-                </thead>
-                <tbody id="works-history-table"></tbody>
-              </table>
-              <br />
-             
-              <br />
-              <p> or, create a new Request</p>
-              <button
-                type="submit"
-                class="btn btn-dark w-50"
-                onclick="handleNavigation('view-requests-new-request')"
-              >
-                New Request
-              </button>
+              <h3>all-messages</h3>
+              <form>
+                <div class="mb-3"></div>
+              </form>
             </div>
           </div>
         </div>
@@ -447,142 +318,46 @@
     </div>
 
     <!--view-request -->
-    <div id="view-request" class="container mt-5 content">
+    <div id="view-request-screen" class="container mt-5 content">
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>View Request</h3>
-            </div>
-            <div id="cancel-service"> 
-              <!-- Only visible if status is "Service Requested" -->
-              <button type="submit" class="btn btn-dark w-50" onclick="handleCancelServiceRequest()">
-                Cancel Service Request
-              </button>
-            </div>
-            <br />
-            <div id="approve-service">
-              <button type="submit" class="btn btn-dark w-50">
-                Approve Service
-              </button>
-            </div>
-            <br />
-            <form>
-              <div class="mb-3">
-                <label for="service-number" class="form-label">
-                  Service Number
-                </label>
-                <textarea
-                  class="form-control"
-                  id="service-number"
-                  rows="1"
-                ></textarea>
-              </div>
-              <!-- service-type-view-request -->
-              <div class="mb-3">
-                <label for="service-type" class="form-label">
-                  Service Type
-                </label>
-                <textarea
-                  class="form-control"
-                  id="service-type-view-request"
-                  rows="1"
-                ></textarea>
-              </div>
-              <!-- technician-view-request -->
-              <div class="mb-3">
-                <label for="technician" class="form-label">Technician</label>
-                <textarea
-                  class="form-control"
-                  id="technician-view-request"
-                  rows="1"
-                ></textarea>
-              </div>
-              <!-- equipment-view-request -->
-              <div class="mb-3">
-                <label for="equipment" class="form-label">Equipment</label>
-                <textarea
-                  class="form-control"
-                  id="equipment-view-request"
-                  rows="1"
-                ></textarea>
-              </div>
-              <!-- wo-description-view-request -->
-              <div class="mb-3">
-                <label for="wo-description" class="form-label">
-                  WO Description
-                </label>
-                <textarea
-                  class="form-control"
-                  id="wo-description-view-request"
-                  rows="3"
-                ></textarea>
-              </div>
-              <!-- parts -->
-              <div class="mb-3">
-                <label for="parts" class="form-label">Parts</label>
-                <textarea class="form-control" id="parts" rows="3"></textarea>
-              </div>
-              <!-- labour -->
-              <div class="mb-3">
-                <label for="labour" class="form-label">Labour</label>
-                <textarea class="form-control" id="labour" rows="3"></textarea>
-              </div>
-            </form>
-            <div id="update-request-button">
-              <button type="submit" class="btn btn-dark w-50" onclick="handleUpdateRequest(event)">
-                Update Request
-              </button>
-              <br /><br />
-              <h4>NOTES:</h4>
-              <br />
-              <p>Would you like to leave us a note?</p>
-              <div id = "new-note">
-                <button type="submit" class="btn btn-dark w-50">
-                  New Note
-                </button>
-            </div>
-            <br>
-            <div id="notes">
-              <div id = "note-1">
-                <form>
-                  <!-- Date (text) , Name (text) , Note (text) -->
-                  <div class="mb-3">
-                    <label for="date" class="form-label">Date</label>
-                    <textarea class="form-control" id="date-update-request-button" rows="1"></textarea>
-                  </div>
-                  <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <textarea class="form-control" id="name" rows="1"></textarea>
-                  </div>
-                  <div class="mb-3">
-                    <label for="note" class="form-label">Note</label>
-                    <textarea class="form-control" id="note" rows="3"></textarea>
-                  </div>
-                  <button id = "edit-note" type="submit" class="btn btn-dark w-25">
-                    Edit
-                </form>
-              </div>
-              <br>
+              <h3>view-request</h3>
+              <form>
+                <div class="mb-3"></div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!--add-note -->
-    <div id="add-note" class="container mt-5 content">
+    <!--edit-request -->
+    <div id="edit-request-screen" class="container mt-5 content">
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>Add Note</h3>
+              <h3>edit-request</h3>
               <form>
-                <div class="mb-3">
-                  <label for="add-note" class="form-label">Note</label>
-                  <textarea class="form-control" id="add-note" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-dark w-50">Add Note</button>
+                <div class="mb-3"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--new-note -->
+    <div id="new-note-screen" class="container mt-5 content">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+          <div class="card">
+            <div class="card-body">
+              <h3>new-note</h3>
+              <form>
+                <div class="mb-3"></div>
               </form>
             </div>
           </div>
@@ -591,103 +366,14 @@
     </div>
 
     <!--edit-note -->
-    <div id="edit-note-main" class="container mt-5 content">
+    <div id="edit-note-screen" class="container mt-5 content">
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>Edit Note</h3>
+              <h3>edit-note</h3>
               <form>
-                <div class="mb-3">
-                  <label for="edit-note" class="form-label">Note</label>
-                  <textarea class="form-control" id="edit-note-1" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-dark w-50">Edit Note</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!--update-request -->
-    <div id="update-request" class="container mt-5 content">
-      <div class="row justify-content-center">
-        <div class="col-md-6 text-center">
-          <div class="card">
-            <div class="card-body">
-              <h3>Update Service</h3>
-              <form>
-                <div class="mb-3">
-                  <label for="wo-number" class="form-label">
-                    WO Number
-                  </label>
-                  <textarea
-                    class="form-control"
-                    id="wo-number"
-                    rows="1"
-                  ></textarea>
-                </div>
-                <div class="mb-3">
-                  <label for="service-type" class="form-label">
-                    Service Type
-                  </label>
-                  <select class="form-select" id="service-type-update-request">
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="technician" class="form-label">Technician</label>
-                  <select class="form-select" id="technician-update-request">
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="equipment" class="form-label">Equipment</label>
-                  <select class="form-select" id="equipment-update-request">
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="wo-description" class="form-label">
-                    WO Description
-                  </label>
-                  <textarea
-                    class="form-control"
-                    id="wo-description-update-request"
-                    rows="3"
-                  ></textarea>
-                </div>
-                <div class="mb-3">
-                  <label for="date" class="form-label">Date</label>
-                  <input type="date" class="form-control" id="date-update-request" />
-                </div>
-                <div class="mb-3">
-                  <label for="time" class="form-label">Time</label>
-                  <input type="time" class="form-control" id="time-update-request" />
-                </div>
-                <button type="submit" class="btn btn-dark w-50" onclick="handleUpdate()">Update Service</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!--update-parts-labour -->
-    <div id="update-parts-labour" class="container mt-5 content">
-      <div class="row justify-content-center">
-        <div class="col-md-6 text-center">
-          <div class="card">
-            <div class="card-body">
-              <h3>update-parts-labour</h3>
-              <form>
-                <div class="mb-3">
-                  <label for="update-parts" class="form-label">Parts</label>
-                  <textarea class="form-control" id="update-parts" rows="3"></textarea>
-                </div>
-                <div class="mb-3">
-                  <label for="update-labour" class="form-label">Labour</label>
-                  <textarea class="form-control" id="update-labour" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-dark w-50">Update Parts Labour</button>
+                <div class="mb-3"></div>
               </form>
             </div>
           </div>
@@ -696,12 +382,31 @@
     </div>
 
     <!--add-parts -->
-    <div id="add-parts" class="container mt-5 content">
+    <div id="add-parts-screen" class="container mt-5 content">
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
               <h3>add-parts</h3>
+              <form>
+                <div class="mb-3"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--edit-parts -->
+    <div id="edit-parts-screen" class="container mt-5 content">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+          <div class="card">
+            <div class="card-body">
+              <h3>edit-parts</h3>
+              <form>
+                <div class="mb-3"></div>
+              </form>
             </div>
           </div>
         </div>
@@ -709,25 +414,79 @@
     </div>
 
     <!--add-labour -->
-    <div id="add-labour" class="container mt-5 content">
+    <div id="add-labour-screen" class="container mt-5 content">
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
               <h3>add-labour</h3>
+              <form>
+                <div class="mb-3"></div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!--approve -->
-    <div id="approve" class="container mt-5 content">
+    <!--edit-labour -->
+    <div id="edit-labour-screen" class="container mt-5 content">
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>approve</h3>
+              <h3>edit-labour</h3>
+              <form>
+                <div class="mb-3"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--new-request -->
+    <div id="new-request-screen" class="container mt-5 content">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+          <div class="card">
+            <div class="card-body">
+              <h3>new-request</h3>
+              <form>
+                <div class="mb-3"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--confirm-request -->
+    <div id="confirm-request-screen" class="container mt-5 content">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+          <div class="card">
+            <div class="card-body">
+              <h3>confirm-request</h3>
+              <form>
+                <div class="mb-3"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--sign-off-request -->
+    <div id="sign-off-request-screen" class="container mt-5 content">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+          <div class="card">
+            <div class="card-body">
+              <h3>sign-off-request</h3>
+              <form>
+                <div class="mb-3"></div>
+              </form>
             </div>
           </div>
         </div>
@@ -735,18 +494,22 @@
     </div>
 
     <!--log-out -->
-    <div id="log-out" class="container mt-5 content">
+    <div id="log-out-screen" class="container mt-5 content">
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>log-out</h3>
+              <h3>log-out-request</h3>
+              <form>
+                <div class="mb-3"></div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <script src="wo.js"></script>
