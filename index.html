@@ -177,7 +177,7 @@
               <a
                 id="add-labour-nav"
                 class="nav-link active"
-                href="#ladd-labour"
+                href="#add-labour"
                 onclick="handleNavClick(this.id)"
               >
                 Add Labour
@@ -247,7 +247,9 @@
 
     <!--login -->
     <div id="login-screen" class="container mt-5 content">
-      <!-- Comment -->
+      <!-- If User Exists and Password is Correct, reditect to client-landing for client and work-history for service provider -->
+      <!-- if Forget Password is clicked, redirect to reset-password -->
+      <!-- If Register is clicked, redirect to register -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -264,6 +266,7 @@
 
     <!--update-password -->
     <div id="update-password-screen" class="container mt-5 content">
+      <!-- If Update password is selected, check if old password is correct, update pasword, redirect to login screen -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -280,6 +283,7 @@
 
     <!--reset-password -->
     <div id="reset-password-screen" class="container mt-5 content">
+      <!-- if reset password is selected, send email with new password -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -296,6 +300,8 @@
 
     <!--register -->
     <div id="register-screen" class="container mt-5 content">
+      <!-- if register is selected, check if user exists, if not, 
+      add user to database, trigger register process and redirect to register-landing -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -312,6 +318,7 @@
 
     <!--register-landing -->
     <div id="register-landing-screen" class="container mt-5 content">
+      <!-- Show message with next steps, of home is selected, navigate to login screen -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -328,6 +335,9 @@
 
     <!--client-landing -->
     <div id="client-landing-screen" class="container mt-5 content">
+      <!-- If view requests is selected, redirect to work-history -->
+      <!-- If new request is selected, redirect to new-request -->
+      <!-- If message is selected, redirect to all-messages -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -344,6 +354,10 @@
 
     <!--work-history -->
     <div id="work-history-screen" class="container mt-5 content">
+      <!-- render history of request for company or service team -->
+      <!-- If new request is select , navigate to new-request -->
+      <!-- If status of a specific request is selected, navigate to view-request -->
+
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -360,6 +374,9 @@
 
     <!--all-messages -->
     <div id="all-messages-screen" class="container mt-5 content">
+      <!-- Render all messages for a specific client or service team -->
+      <!-- If view request is selected, navigate to view-request -->
+      <!-- if view all requests is selected, navigate to work-history -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -376,6 +393,27 @@
 
     <!--view-request -->
     <div id="view-request-screen" class="container mt-5 content">
+      <!-- Populate with detail for a specific request -->
+      <!-- If request status is service-call render cancel request button -->
+      <!-- If cancel request button is clicked, update status to cancelled and navigate to work-history -->
+      <!-- If request status is request-approval render Approve Request button -->
+      <!-- If Approve Request button is clicked, navigate to sign off request -->
+      <!-- if the role is service team, render edit request button -->
+      <!-- If edit request button is clicked, navigate to edit request -->
+      <!-- If new note button is clicked, navigate to new note -->
+      <!-- Render all the notes for the request -->
+      <!-- For each note, if the user is the owner of the note, render edit note button -->
+      <!-- If the edit note button is clicked, navigate to edit note -->
+      <!-- Show all labour for the request -->
+      <!-- if the role is service team, render add labour button -->
+      <!-- If add labour button is clicked, navigate to add labour -->
+      <!-- If the role is service team, render edit labour button for each labour item -->
+      <!-- If edit labour button is clicked, navigate to edit labour -->
+      <!-- if the role is service team, render add parts button -->
+      <!-- If add parts button is clicked, navigate to add parts -->
+      <!-- If the role is service team, render edit parts button for each parts item -->
+      <!-- If edit parts button is clicked, navigate to edit parts -->
+
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -392,6 +430,9 @@
 
     <!--edit-request -->
     <div id="edit-request-screen" class="container mt-5 content">
+      <!-- Render the request fields (excl parts, labour) editable -->
+      <!-- If Update request is clicked, update request and navigate to view request -->
+      <!-- if Back is clicked, navigate to view request -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -408,6 +449,8 @@
 
     <!--new-note -->
     <div id="new-note-screen" class="container mt-5 content">
+      <!-- if Add Note is selected, add Note and navigate to view request -->
+      <!-- If cancel is selected, navigate to view request -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -424,6 +467,8 @@
 
     <!--edit-note -->
     <div id="edit-note-screen" class="container mt-5 content">
+      <!-- if Edit Note is selected, update Note and navigate to view request -->
+      <!-- If cancel is selected, navigate to view request -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -440,6 +485,8 @@
 
     <!--add-parts -->
     <div id="add-parts-screen" class="container mt-5 content">
+      <!-- if Add parts is selected, add parts and navigate to view request -->
+      <!-- if cancel is selected, navigate to view request -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -456,6 +503,9 @@
 
     <!--edit-parts -->
     <div id="edit-parts-screen" class="container mt-5 content">
+      <!-- if edit parts is selected, update parts and navigate to view request -->
+      <!-- if delete parts is selected, delete parts and navigate to view request  -->
+      <!-- if cancel is selected, navigate to view request -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -472,6 +522,8 @@
 
     <!--add-labour -->
     <div id="add-labour-screen" class="container mt-5 content">
+      <!-- if Add labour is selected, add labour and navigate to view request -->
+      <!-- if cancel is selected, navigate to view request -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -488,6 +540,9 @@
 
     <!--edit-labour -->
     <div id="edit-labour-screen" class="container mt-5 content">
+      <!-- if edit labour is selected, update labour and navigate to view request -->
+      <!-- if delete labour is selected, delete labour and navigate to view request  -->
+      <!-- if cancel is selected, navigate to view request -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -504,6 +559,8 @@
 
     <!--new-request -->
     <div id="new-request-screen" class="container mt-5 content">
+      <!-- If request service is selected, add request and navigate to view request -->
+      <!-- If cancel is selected, navigate to client landing -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -520,6 +577,7 @@
 
     <!--confirm-request -->
     <div id="confirm-request-screen" class="container mt-5 content">
+      <!-- for technicians to confirm a request, think about flow -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -536,6 +594,8 @@
 
     <!--sign-off-request -->
     <div id="sign-off-request-screen" class="container mt-5 content">
+      <!-- if sign off is selected, update status to completed and navigate to work history -->
+      <!-- if cancel is selected, navigate to view request -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
@@ -552,6 +612,8 @@
 
     <!--log-out -->
     <div id="log-out-screen" class="container mt-5 content">
+      <!-- if log out is selected, navigate to login screen -->
+      <!-- if cancel is selected, navigate to work history -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
