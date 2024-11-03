@@ -40,6 +40,50 @@
                 Log In
               </a>
             </li>
+            <!-- #update-password -->
+            <li class="nav-item">
+              <a
+                id="update-password-nav"
+                class="nav-link"
+                href="#update-password"
+                onclick="handleNavClick(this.id)"
+              >
+                Update Password
+              </a>
+            </li>
+            <!-- #reset-password -->
+            <li class="nav-item">
+              <a
+                id="reset-password-nav"
+                class="nav-link"
+                href="#reset-password"
+                onclick="handleNavClick(this.id)"
+              >
+                Reset Password
+              </a>
+            </li>
+            <!-- #register -->
+            <li class="nav-item">
+              <a
+                id="register-nav"
+                class="nav-link"
+                href="#register"
+                onclick="handleNavClick(this.id)"
+              >
+                Register
+              </a>
+            </li>
+            <!-- #register-landing -->
+            <li class="nav-item">
+              <a
+                id="register-landing-nav"
+                class="nav-link"
+                href="#register-landing"
+                onclick="handleNavClick(this.id)"
+              >
+                Register Landing
+              </a>
+            </li>
             <!-- #client-landing -->
             <li class="nav-item">
               <a
@@ -51,37 +95,26 @@
                 Client Landing
               </a>
             </li>
-            <!-- #new-request -->
+            <!-- #work-history -->
             <li class="nav-item">
               <a
-                id="new-request-nav"
+                id="work-history-nav"
                 class="nav-link"
-                href="#new-request"
+                href="#work-history"
                 onclick="handleNavClick(this.id)"
               >
-                New Request
+                Work History
               </a>
             </li>
-            <!-- #confirm-request -->
+            <!-- #all-messages -->
             <li class="nav-item">
               <a
-                id="confirm-request-nav"
+                id="all-messages-nav"
                 class="nav-link"
-                href="#confirm-request"
+                href="#all-messages"
                 onclick="handleNavClick(this.id)"
               >
-                Confirm Request
-              </a>
-            </li>
-            <!-- #view-requests -->
-            <li class="nav-item">
-              <a
-                id="view-requests-nav"
-                class="nav-link"
-                href="#view-requests"
-                onclick="handleNavClick(this.id)"
-              >
-                View Requests
+                Messages
               </a>
             </li>
             <!-- #view-request -->
@@ -95,15 +128,15 @@
                 View Request
               </a>
             </li>
-            <!-- #add-note -->
+            <!-- #new-note -->
             <li class="nav-item">
               <a
-                id="add-note-nav"
+                id="new-note-nav"
                 class="nav-link"
-                href="#add-note"
+                href="#new-note"
                 onclick="handleNavClick(this.id)"
               >
-                Add Note
+                New Note
               </a>
             </li>
             <!-- #edit-note -->
@@ -117,28 +150,6 @@
                 Edit Note
               </a>
             </li>
-            <!-- #update-request -->
-            <li class="nav-item">
-              <a
-                id="update-request-nav"
-                class="nav-link"
-                href="#update-request"
-                onclick="handleNavClick(this.id)"
-              >
-                Update Request
-              </a>
-            </li>
-            <!-- #update-parts-labour -->
-            <li class="nav-item">
-              <a
-                id="update-parts-labour-nav"
-                class="nav-link"
-                href="#update-parts-labour"
-                onclick="handleNavClick(this.id)"
-              >
-                Update Parts / Labour
-              </a>
-            </li>
             <!-- #add-parts -->
             <li class="nav-item">
               <a
@@ -150,26 +161,70 @@
                 Add Parts
               </a>
             </li>
+            <!-- #edit-parts -->
+            <li class="nav-item">
+              <a
+                id="edit-parts-nav"
+                class="nav-link"
+                href="#edit-parts"
+                onclick="handleNavClick(this.id)"
+              >
+                Edit Parts
+              </a>
+            </li>
             <!-- #add-labour -->
             <li class="nav-item">
               <a
                 id="add-labour-nav"
-                class="nav-link"
-                href="#add-labour"
+                class="nav-link active"
+                href="#ladd-labour"
                 onclick="handleNavClick(this.id)"
               >
                 Add Labour
               </a>
             </li>
-            <!-- #approve -->
+            <!-- #edit-labour -->
             <li class="nav-item">
               <a
-                id="approve-works-order-nav"
-                class="nav-link"
-                href="#approve-works-order"
+                id="edit-labour-nav"
+                class="nav-link active"
+                href="#edit-labour"
                 onclick="handleNavClick(this.id)"
               >
-                Approve Works Order
+                Edit Labour
+              </a>
+            </li>
+            <!-- #new-request -->
+            <li class="nav-item">
+              <a
+                id="new-request"
+                class="nav-link active"
+                href="#new-request"
+                onclick="handleNavClick(this.id)"
+              >
+                New Request
+              </a>
+            </li>
+            <!-- #confirm-request -->
+            <li class="nav-item">
+              <a
+                id="confirm-request"
+                class="nav-link active"
+                href="#confirm-request"
+                onclick="handleNavClick(this.id)"
+              >
+                Confirm Request
+              </a>
+            </li>
+            <!-- #sign-off-request -->
+            <li class="nav-item">
+              <a
+                id="sign-off-request-nav"
+                class="nav-link active"
+                href="#sign-off-request"
+                onclick="handleNavClick(this.id)"
+              >
+                Sign Off Request
               </a>
             </li>
             <!-- #log-out -->
@@ -187,10 +242,12 @@
         </div>
       </div>
     </nav>
+
     <!-- BODY -->
 
     <!--login -->
     <div id="login-screen" class="container mt-5 content">
+      <!-- Comment -->
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
