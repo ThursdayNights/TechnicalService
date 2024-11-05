@@ -149,6 +149,17 @@
                 View Request
               </a>
             </li>
+            <!-- #edit-request -->
+            <li class="nav-item">
+              <a
+                id="edit-request"
+                class="nav-link active"
+                href="#edit-request"
+                onclick="handleNavClick(this.id)"
+              >
+                Edit Request
+              </a>
+            </li>
             <!-- #new-note -->
             <li class="nav-item">
               <a
@@ -614,10 +625,153 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>view-request</h3>
+              <h3>View Request</h3>
+              <div id="approve-request-button">
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  Approve Request
+                </button>
+              </div>
+              <br />
+              <br />
               <form>
-                <div class="mb-3"></div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="view-request-number"
+                    placeholder="Request Number"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="view-service-type"
+                    placeholder="Service Type"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="view-technician"
+                    placeholder="Technician"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="view-equipment"
+                    placeholder="Equipment"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="view-serial-number"
+                    placeholder="Serial Number"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="view-problem-description"
+                    placeholder="Problem Description"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  EDIT REQUEST
+                </button>
               </form>
+              <br />
+              <br />
+              <div id="cancel-request-button">
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  CANCEL REQUEST
+                </button>
+              </div>
+              <br />
+              <div id="view-notes">
+                <h4>NOTES</h4>
+                <div class="card">
+                  <div class="card-body">
+                    <br />
+                    <div id="notes-history-table">
+                      <p>Place holder for notes table</p>
+                    </div>
+                    <br />
+                    <br />
+                    <button
+                      type="submit"
+                      class="btn btn-dark w-50"
+                      onclick="alert('Functionality Under Construction')"
+                    >
+                      Create New Note
+                    </button>
+                    <br />
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div id="view-labour">
+                <h4>LABOUR</h4>
+                <div class="card">
+                  <div class="card-body">
+                    <br />
+                    <div id="labour-history-table">
+                      <p>Place holder for labour table</p>
+                    </div>
+                    <br />
+                    <br />
+                    <button
+                      type="submit"
+                      class="btn btn-dark w-50"
+                      onclick="alert('Functionality Under Construction')"
+                    >
+                      Add Labour
+                    </button>
+                    <br />
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div id="view-parts">
+                <h4>PARTS</h4>
+                <div class="card">
+                  <div class="card-body">
+                    <br />
+                    <div id="parts-history-table">
+                      <p>Place holder for parts table</p>
+                    </div>
+                    <br />
+                    <br />
+                    <button
+                      type="submit"
+                      class="btn btn-dark w-50"
+                      onclick="alert('Functionality Under Construction')"
+                    >
+                      Add Parts
+                    </button>
+                    <br />
+                  </div>
+                </div>
+              </div>
+              <br />
             </div>
           </div>
         </div>
@@ -633,10 +787,76 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>edit-request</h3>
+              <h3>Edit Request</h3>
+              <br />
               <form>
-                <div class="mb-3"></div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-request-number"
+                    placeholder="Request Number"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-service-type"
+                    placeholder="Service Type"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-technician"
+                    placeholder="Technician"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-equipment"
+                    placeholder="Equipment"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-serial-number"
+                    placeholder="Serial Number"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-problem-description"
+                    placeholder="Problem Description"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  UPDATE REQUEST
+                </button>
               </form>
+              <br />
+              <br />
+              <div id="edit-request-back-button">
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  BACK
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -651,10 +871,36 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>new-note</h3>
+              <h3>New Note</h3>
+              <br />
               <form>
-                <div class="mb-3"></div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="new-note-text"
+                    placeholder="New Note Text"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  ADD NOTE
+                </button>
               </form>
+              <br />
+              <br />
+              <div id="new-note-back-button">
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  CANCEL
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -669,10 +915,36 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>edit-note</h3>
+              <h3>Edit Note</h3>
+              <br />
               <form>
-                <div class="mb-3"></div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-note-text"
+                    placeholder="Edit Note Text"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  EDIT NOTE
+                </button>
               </form>
+              <br />
+              <br />
+              <div id="edit-note-back-button">
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  CANCEL
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -687,10 +959,36 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>add-parts</h3>
+              <h3>Add Parts</h3>
+              <br />
               <form>
-                <div class="mb-3"></div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="add-parts-text"
+                    placeholder="Add Parts Text"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  ADD PARTS
+                </button>
               </form>
+              <br />
+              <br />
+              <div id="add-parts-back-button">
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  CANCEL
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -706,10 +1004,36 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>edit-parts</h3>
+              <h3>Add Parts</h3>
+              <br />
               <form>
-                <div class="mb-3"></div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-parts-text"
+                    placeholder="Edit Parts Text"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  EDIT PARTS
+                </button>
               </form>
+              <br />
+              <br />
+              <div id="edit-parts-back-button">
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  CANCEL
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -724,9 +1048,47 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>add-labour</h3>
+              <h3>Add Labour</h3>
               <form>
-                <div class="mb-3"></div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="add-labour-technician"
+                    placeholder="Technician"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="add-labour-detail"
+                    placeholder="Labour Detail"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="add-labour-hour-type"
+                    placeholder="Hours Type"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="add-labour-hours"
+                    placeholder="Labour Hours"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  ADD LABOUR
+                </button>
               </form>
             </div>
           </div>
@@ -743,9 +1105,47 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>edit-labour</h3>
+              <h3>Edit Labour</h3>
               <form>
-                <div class="mb-3"></div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-labour-technician"
+                    placeholder="Technician"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-labour-detail"
+                    placeholder="Labour Detail"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-labour-hour-type"
+                    placeholder="Hours Type"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-labour-hours"
+                    placeholder="Labour Hours"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  ADD LABOUR
+                </button>
               </form>
             </div>
           </div>
@@ -761,9 +1161,93 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>new-request</h3>
-              <form>
-                <div class="mb-3"></div>
+              <h3>New Request</h3>
+                <form>
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="new-request-number"
+                      placeholder="Request Number"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="new-service-type"
+                      placeholder="Service Type"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="new-technician"
+                      placeholder="Technician"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="new-equipment"
+                      placeholder="Equipment"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="new-serial-number"
+                      placeholder="Serial Number"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="new-problem-description"
+                      placeholder="Description"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="new-date"
+                      placeholder="Date"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="new-time"
+                      placeholder="Time"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-dark w-50"
+                    onclick="alert('Functionality Under Construction')"
+                  >
+                    REQUEST SERVICE
+                  </button>
+                </form>
+                <br />
+                <br />
+                <div id="cancel-request-button">
+                  <button
+                    type="submit"
+                    class="btn btn-dark w-50"
+                    onclick="alert('Functionality Under Construction')"
+                  >
+                    CANCEL
+                  </button>
+                </div>
+                <br />
               </form>
             </div>
           </div>
@@ -778,9 +1262,101 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>confirm-request</h3>
-              <form>
-                <div class="mb-3"></div>
+              <h3>Confirm Request</h3>
+                <form>
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="confirm-client-name"
+                      placeholder="Client Name"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="confirm-request-number"
+                      placeholder="Request Number"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="confirm-service-type"
+                      placeholder="Service Type"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="confirm-technician"
+                      placeholder="Technician"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="confirm-equipment"
+                      placeholder="Equipment"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="confirm-serial-number"
+                      placeholder="Serial Number"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="confirm-problem-description"
+                      placeholder="Description"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="confirm-date"
+                      placeholder="Date"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="confirm-time"
+                      placeholder="Time"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-dark w-50"
+                    onclick="alert('Functionality Under Construction')"
+                  >
+                    CONFIRM SERVICE
+                  </button>
+                </form>
+                <br />
+                <br />
+                <div id="cancel-request-button">
+                  <button
+                    type="submit"
+                    class="btn btn-dark w-50"
+                    onclick="alert('Functionality Under Construction')"
+                  >
+                    CANCEL
+                  </button>
+                </div>
+                <br />
               </form>
             </div>
           </div>
@@ -795,12 +1371,38 @@
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
           <div class="card">
-            <div class="card-body">
-              <h3>sign-off-request</h3>
-              <form>
-                <div class="mb-3"></div>
-              </form>
+          <div class="card-body">
+            <h3>Sign Off Request</h3>
+            <br />
+            <form>
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="sign-off-request"
+                  placeholder="Confirmation Message"
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn btn-dark w-50"
+                onclick="alert('Functionality Under Construction')"
+              >
+                Approve Service Detail
+              </button>
+            </form>
+            <br />
+            <br />
+            <div id="sign-off-back-button">
+              <button
+                type="submit"
+                class="btn btn-dark w-50"
+                onclick="alert('Functionality Under Construction')"
+              >
+                CANCEL
+              </button>
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -814,10 +1416,30 @@
         <div class="col-md-6 text-center">
           <div class="card">
             <div class="card-body">
-              <h3>log-out-request</h3>
-              <form>
-                <div class="mb-3"></div>
-              </form>
+              <h3>Log Out</h3>
+              <br />
+              <div id="log-out-log-out-button">
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  LOG OUT
+                </button>
+              </div>   
+              <br />
+              <br />         
+              <div id="log-out-cancel-button">
+                <button
+                  type="submit"
+                  class="btn btn-dark w-50"
+                  onclick="alert('Functionality Under Construction')"
+                >
+                  CANCEL
+                </button>
+              </div>
+              <br />
+              <br />
             </div>
           </div>
         </div>
