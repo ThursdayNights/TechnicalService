@@ -290,24 +290,26 @@
               <form>
                 <div class="mb-3">
                   <input
-                    type="name"
+                    type="text"
                     class="form-control"
                     id="username"
+                    name = "username"
                     placeholder="User name"
                   />
                 </div>
                 <div class="mb-3">
                   <input
-                    type="password"
+                    type="text"
                     class="form-control"
                     id="password"
+                    name = "password"
                     placeholder="Not Required for Demo"
                   />
                 </div>
                 <button
                   type="submit"
                   class="btn btn-dark w-50"
-                  onclick="alert('Functionality Under Construction')"
+                  onclick= handlebuttonlogin(event)
                 >
                   LOG IN
                 </button>
@@ -1506,8 +1508,6 @@
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-    <script src="casedate.js"></script>
-    <script src="users.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

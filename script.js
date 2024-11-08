@@ -1,3 +1,160 @@
+// DATABASE PROXY
+var cases = [
+  {
+    requestid: 1,
+    servicetype: "Repair",
+    technician: "Victor",
+    equipment: "Arburg",
+    serialnumber: "123456",
+    description: "This is the first work order",
+    status: "Request",
+    created: "2024-10-02",
+    servicecall: { date: "2024-10-10", time: "10:00" },
+    notes: [
+      {
+        noteid: 1,
+        noteowner: "Lourens",
+        note: "This is the first note",
+        notedate: "2024-10-02",
+      },
+    ],
+    parts: [
+      { partid: 1, parts: "This is a list of parts", partdate: "2024-10-02" },
+    ],
+    labour: [
+      {
+        labourid: 1,
+        technician: "Lourens",
+        labourdetial: "Text Description",
+        hourtype: "",
+        labourhours: "",
+      },
+    ],
+  },
+];
+var worksorders = [
+  {
+    id: 1,
+    client: "BIC",
+    servicetype: "Repair",
+    equipment: "Arburg",
+    technician: "Victor",
+    description: "This is the first work order",
+    status: "Works Order",
+    created: "2024-10-02",
+    servicecall: { date: "2024-10-10", time: "10:00" },
+    worksordernumber: "WO-001",
+    worksorderdetails: [
+      {
+        Item: "Parts",
+        Qoute: "QouteBarrel.pdf",
+        price: "R6300",
+        status: "Pending",
+        date: "2024-10-11",
+      },
+      {
+        Item: "Labour",
+        technicians: "Victor",
+        hours: "4",
+        rate: "500",
+        price: "R2000",
+        status: "Accepted",
+        date: "2024-10-12",
+      },
+      {
+        Item: "Labour",
+        technicians: "Lourens",
+        hours: "6",
+        rate: "500",
+        price: "R3000",
+        status: "Accepted",
+        date: "2024-10-11",
+      },
+    ],
+  },
+  {
+    id: 2,
+    client: "Pharma-Pack",
+    servicetype: "Repair",
+    equipment: "Macquire",
+    technician: "Gus",
+    description: "Dryer not drying",
+    status: "Service Call",
+    created: "2024-10-03",
+    servicecall: { date: "2024-10-15", time: "14:00" },
+    worksordernumber: "WO-002",
+    worksorderdetails: [],
+  },
+  {
+    id: 3,
+    client: "BIC",
+    servicetype: "Repair",
+    equipment: "Arburg",
+    technician: "Lourens",
+    description: "Straws paper like",
+    status: "Please Approve",
+    created: "2024-10-04",
+    servicecall: { date: "2024-10-11", time: "09:00" },
+    worksordernumber: "WO-003",
+    worksorderdetails: [
+      {
+        Item: "Parts",
+        Qoute: "parts.pdf",
+        price: "R15000",
+        status: "Accepted",
+        date: "2024-10-11",
+      },
+      {
+        Item: "Labour",
+        technicians: "Gus",
+        hours: "10",
+        rate: "650",
+        price: "R6500",
+        status: "Accepted",
+        date: "2024-10-12",
+      },
+    ],
+  },
+];
+var cases = [
+  {
+    requestid: 1,
+    servicetype: "Repair",
+    technician: "Victor",
+    equipment: "Arburg",
+    serialnumber: "123456",
+    description: "This is the first work order",
+    status: "Request",
+    created: "2024-10-02",
+    servicecall: { date: "2024-10-10", time: "10:00" },
+    notes: [
+      {
+        noteid: 1,
+        noteowner: "Lourens",
+        note: "This is the first note",
+        notedate: "2024-10-02",
+      },
+    ],
+    parts: [
+      { partid: 1, parts: "This is a list of parts", partdate: "2024-10-02" },
+    ],
+    labour: [
+      {
+        labourid: 1,
+        technician: "Lourens",
+        labourdetial: "Text Description",
+        hourtype: "",
+        labourhours: "",
+      },
+    ],
+  },
+];
+var users = [
+  { username: "vicus", password: "123", type: "client" },
+  { username: "juanita", password: "123", type: "service" },
+];
+
+// SCRIPT
 document.addEventListener("DOMContentLoaded", function () {
   var elements = document.querySelectorAll(".container.mt-5.content");
   elements.forEach(function (element) {
@@ -39,11 +196,13 @@ function scrollToElement(target) {
 }
 
 // BUTTON FUNCTIONS
-function handlebuttonlogin(data) {
-  alert(data);
-  // check user name and password
-  // set type of user
-  // navigate
+function handlebuttonlogin(event) {
+  event.preventDefault();
+  var data = new FormData(event.target.form);
+  var username = data.get("username");
+  var password = data.get("password");
+  var { userverified, passwordverified, type } = checklogin(username, password);
+  alert(userverified + " " + passwordverified + " " + type);
 }
 
 function handlebuttonupdatepassword(data) {
@@ -151,6 +310,28 @@ function handlebuttoneditnotes(data) {
 }
 
 // HELPER FUNCTIONS
+// Assuming users is an array of user objects defined somewhere in your code
+
+function checklogin(username, password) {
+  // check login credentials against users in users.js
+  var userverified = false;
+  var passwordverified = false;
+  var type = null;
+
+  // Check if user exists
+  var user = users.find((user) => user.username === username);
+  if (user) {
+    // Check password
+    if (user.password === password) {
+      userverified = true;
+      passwordverified = true;
+      type = user.type;
+    }
+  }
+
+  return { userverified, passwordverified, type };
+}
+
 function sendmessage(data) {
   alert(data);
   // send message -- WhatsApp for business API integration
