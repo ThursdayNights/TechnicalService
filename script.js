@@ -9,7 +9,8 @@ var cases = [
     description: "This is the first work order",
     status: "Request",
     created: "2024-10-02",
-    servicecall: { date: "2024-10-10", time: "10:00" },
+    date: "2024-10-10",
+    time: "10:00",
     notes: [
       {
         noteid: 1,
@@ -32,127 +33,18 @@ var cases = [
     ],
   },
 ];
-var worksorders = [
-  {
-    id: 1,
-    client: "BIC",
-    servicetype: "Repair",
-    equipment: "Arburg",
-    technician: "Victor",
-    description: "This is the first work order",
-    status: "Works Order",
-    created: "2024-10-02",
-    servicecall: { date: "2024-10-10", time: "10:00" },
-    worksordernumber: "WO-001",
-    worksorderdetails: [
-      {
-        Item: "Parts",
-        Qoute: "QouteBarrel.pdf",
-        price: "R6300",
-        status: "Pending",
-        date: "2024-10-11",
-      },
-      {
-        Item: "Labour",
-        technicians: "Victor",
-        hours: "4",
-        rate: "500",
-        price: "R2000",
-        status: "Accepted",
-        date: "2024-10-12",
-      },
-      {
-        Item: "Labour",
-        technicians: "Lourens",
-        hours: "6",
-        rate: "500",
-        price: "R3000",
-        status: "Accepted",
-        date: "2024-10-11",
-      },
-    ],
-  },
-  {
-    id: 2,
-    client: "Pharma-Pack",
-    servicetype: "Repair",
-    equipment: "Macquire",
-    technician: "Gus",
-    description: "Dryer not drying",
-    status: "Service Call",
-    created: "2024-10-03",
-    servicecall: { date: "2024-10-15", time: "14:00" },
-    worksordernumber: "WO-002",
-    worksorderdetails: [],
-  },
-  {
-    id: 3,
-    client: "BIC",
-    servicetype: "Repair",
-    equipment: "Arburg",
-    technician: "Lourens",
-    description: "Straws paper like",
-    status: "Please Approve",
-    created: "2024-10-04",
-    servicecall: { date: "2024-10-11", time: "09:00" },
-    worksordernumber: "WO-003",
-    worksorderdetails: [
-      {
-        Item: "Parts",
-        Qoute: "parts.pdf",
-        price: "R15000",
-        status: "Accepted",
-        date: "2024-10-11",
-      },
-      {
-        Item: "Labour",
-        technicians: "Gus",
-        hours: "10",
-        rate: "650",
-        price: "R6500",
-        status: "Accepted",
-        date: "2024-10-12",
-      },
-    ],
-  },
-];
-var cases = [
-  {
-    requestid: 1,
-    servicetype: "Repair",
-    technician: "Victor",
-    equipment: "Arburg",
-    serialnumber: "123456",
-    description: "This is the first work order",
-    status: "Request",
-    created: "2024-10-02",
-    servicecall: { date: "2024-10-10", time: "10:00" },
-    notes: [
-      {
-        noteid: 1,
-        noteowner: "Lourens",
-        note: "This is the first note",
-        notedate: "2024-10-02",
-      },
-    ],
-    parts: [
-      { partid: 1, parts: "This is a list of parts", partdate: "2024-10-02" },
-    ],
-    labour: [
-      {
-        labourid: 1,
-        technician: "Lourens",
-        labourdetial: "Text Description",
-        hourtype: "",
-        labourhours: "",
-      },
-    ],
-  },
-];
+// Duplicate definition removed
 var users = [
-  { username: "vicus", password: "123", type: "client" },
-  { username: "juanita", password: "123", type: "service" },
+  { username: "vicus", password: "123", type: "client", company: "BritsPlas" },
+  { username: "juanita", password: "123", type: "service", company: "Hestico" },
+  { username: "lourens", password: "123", type: "service", company: "Hestico" },
 ];
+var global = {
+  user: "",
+  type: "",
+  requestid: "",
+  company: "",
+};
 
 // SCRIPT
 document.addEventListener("DOMContentLoaded", function () {
@@ -160,6 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
   elements.forEach(function (element) {
     element.style.display = "none";
   });
+  scrollToElement("login");
+  populatedropdowns();
 });
 
 function handleNavClick(id) {
@@ -174,9 +68,10 @@ function handleNavClick(id) {
     navbarCollapse.classList.remove("show");
   }
 }
-// navigate to the element with the id passed in the function
-// extend with to , from, id
+
 function scrollToElement(target) {
+  // navigate to the element with the id passed in the function
+  // extend with to , from, id
   //  add "-screen" to the target
   target = target + "-screen";
   // find all elements with class="container mt-5 content" and hide them
@@ -201,110 +96,141 @@ function handlebuttonlogin(event) {
   var data = new FormData(event.target.form);
   var username = data.get("username");
   var password = data.get("password");
+  var company = users.find((user) => user.username === username).company;
+
   var { userverified, passwordverified, type } = checklogin(username, password);
-  alert(userverified + " " + passwordverified + " " + type);
+  if (userverified && passwordverified) {
+    updateglobal({ user: username, type: type, company: company });
+    if (type === "client") {
+      scrollToElement("client-landing");
+    } else if (type === "service") {
+      scrollToElement("work-history");
+    }
+  }
+  if (!userverified) {
+    alert("User not found");
+  }
+  if (!passwordverified) {
+    alert("Password incorrect");
+  }
 }
 
-function handlebuttonupdatepassword(data) {
-  alert(data);
+function handlebuttonupdatepassword(event) {
+  event.preventDefault();
   // update password
   // navigate
 }
 
-function handlebuttonresetpassword(data) {
-  alert(data);
-  // reset password
-  // sendmessage(data)
-  // navigate
+function handlebuttonresetpassword(event) {
+  event.preventDefault();
+  scrollToElement("reset-password");
 }
 
-function handlebuttonregister(data) {
-  alert(data);
-  // some process to be defined
-  // sendmessage(data)
+function handlebuttonresetpasswordreset(event) {
+  event.preventDefault();
+  alert("Functionality Under Construction");
+  scrollToElement("login");
 }
 
-function handlebuttonlogout(data) {
-  alert(data);
+function handlebuttonregister(event) {
+  event.preventDefault();
+  scrollToElement("register");
+}
+
+function handlebuttonregisterregister(event) {
+  event.preventDefault();
+  alert("Functionality Under Construction");
+  scrollToElement("login");
+}
+
+function handlebuttonlogout(event) {
+  event.preventDefault();
   // log out code
   // navigate
 }
 
-function handlebuttonnewrequest(data) {
-  alert(data);
-  // createid
-  // createcase
-  // navigate
+function handlebuttonnewrequest(event) {
+  event.preventDefault();
+  createnewrequest();
+  loadnewrequest();
+  scrollToElement("new-request");
 }
 
-function handlebuttonexistingrequests(data) {
+function handlebuttonsubmitnewrequest(event) {
+  event.preventDefault();
+  submitnewrequest();
+  loadworkhistory();
+  scrollToElement("work-history");
+}
+
+function handlebuttonexistingrequests(event) {
   alert(data);
   // loadrequesthistory()
   // navigate
 }
 
-function handlebuttonviewmessages(data) {
+function handlebuttonviewmessages(event) {
   alert(data);
   // loadmessagehistory()
   // navigate
 }
 
-function handlebuttonrequeststatus(data) {
+function handlebuttonrequeststatus(event) {
   alert(data);
   // loadrequest()
   // navigate
 }
 
-function handlebuttonapproverequest(data) {
+function handlebuttonapproverequest(event) {
   alert(data);
   // approverequest()
   // navigate
 }
 
-function handlebuttoneditrequest(data) {
+function handlebuttoneditrequest(event) {
   alert(data);
   // editrequest()
   // navigate
 }
 
-function handlebuttoncancelrequest(data) {
+function handlebuttoncancelrequest(event) {
   alert(data);
   // cancelrequest()
   // navigate
 }
 
-function handlebuttonaddlabour(data) {
+function handlebuttonaddlabour(event) {
   alert(data);
   // addlabour()
   // navigate
 }
 
-function handlebuttoneditlabour(data) {
-  alert(data);
+function handlebuttoneditlabour(event) {
+  event.preventDefault();
   // editlabour()
   // navigate
 }
 
-function handlebuttonaddparts(data) {
-  alert(data);
+function handlebuttonaddparts(event) {
+  event.preventDefault();
   // addparts()
   // navigate
 }
 
-function handlebuttoneditparts(data) {
-  alert(data);
+function handlebuttoneditparts(event) {
+  event.preventDefault();
   // editparts()
   // navigate
 }
 
-function handlebuttonaddnotes(data) {
-  alert(data);
+function handlebuttonaddnotes(event) {
+  event.preventDefault();
   // addnotes()
   // navigate
 }
 
-function handlebuttoneditnotes(data) {
-  alert(data);
+function handlebuttoneditnotes(event) {
+  event.preventDefault();
   // editnotes()
   // navigate
 }
@@ -321,11 +247,11 @@ function checklogin(username, password) {
   // Check if user exists
   var user = users.find((user) => user.username === username);
   if (user) {
+    userverified = true;
+    type = user.type;
     // Check password
     if (user.password === password) {
-      userverified = true;
       passwordverified = true;
-      type = user.type;
     }
   }
 
@@ -383,4 +309,212 @@ function addnotes() {
 
 function editnotes() {
   // edit notes
+}
+
+function createnewrequest() {
+  console.log("Company: " + global.company);
+  var newrequestid = Math.max(...cases.map((request) => request.requestid)) + 1;
+  var newrequest = {
+    requestid: newrequestid,
+    company: global.company,
+    servicetype: "Repair",
+    technician: "",
+    equipment: "",
+    serialnumber: "",
+    description: "",
+    status: "Request",
+    created: new Date().toISOString().split("T")[0],
+    servicecall: {
+      date: new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
+        .toISOString()
+        .split("T")[0],
+      time: "10:00",
+    },
+    notes: [],
+    parts: [],
+    labour: [],
+  };
+  cases.push(newrequest);
+  console.log("cases: createnewrequest");
+  console.log(cases);
+  updateglobal({ requestid: newrequestid });
+}
+
+function loadnewrequest() {
+  // populate fields in new-request with value from cases where requestid = global.requestid
+  var request = cases.find((request) => request.requestid === global.requestid);
+  if (request) {
+    document.getElementById("new-request-number").value = request.requestid;
+    document.getElementById("new-service-type").value = request.servicetype;
+    document.getElementById("new-technician").value = request.technician;
+    document.getElementById("new-equipment").value = request.equipment;
+    document.getElementById("new-serial-number").value = request.serialnumber;
+    document.getElementById("new-problem-description").value =
+      request.description;
+    document.getElementById("new-date").value = request.servicecall.date;
+    document.getElementById("new-time").value = request.servicecall.time;
+  } else {
+    console.error(`Request with ID ${global.requestid} not found.`);
+  }
+
+  console.log("cases: loadnewrequest");
+  console.log(cases);
+}
+
+function submitnewrequest() {
+  // use data from id="new-request-screen" to update cases where requestid = global.requestid
+  var request = cases.find((request) => request.requestid === global.requestid);
+  request.requestid = document.getElementById("new-request-number").value;
+  request.servicetype = document.getElementById("new-service-type").value;
+  request.technician = document.getElementById("new-technician").value;
+  request.equipment = document.getElementById("new-equipment").value;
+  request.serialnumber = document.getElementById("new-serial-number").value;
+  request.description = document.getElementById(
+    "new-problem-description"
+  ).value;
+  request.date = document.getElementById("new-date").value;
+  request.time = document.getElementById("new-time").value;
+
+  console.log("cases: submitnewrequest");
+  console.log(cases);
+}
+
+function loadworkhistory() {
+  // load work history into works-history-table
+  var table = document.getElementById("work-history-table");
+  if (!table) {
+    console.error("Element with ID 'work-history-table' not found.");
+    return;
+  }
+  cases.forEach(function (request) {
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+
+    cell1.innerHTML = request.requestid;
+    cell2.innerHTML = request.date;
+    cell3.innerHTML = request.status;
+  });
+}
+
+function getdropdown(type) {
+  if (type === "technician") {
+    // return username from users where type is service
+    return users
+      .filter((user) => user.type === "service")
+      .map((user) => user.username);
+  }
+  if (type === "equipment") {
+    return [
+      "Arburg",
+      "Engel",
+      "Haitian",
+      "Husky",
+      "Krauss Maffei",
+      "Negri Bossi",
+      "Netstal",
+      "Sumitomo",
+      "Toshiba",
+      "Van Dorn",
+    ];
+  }
+  if (type === "servicetype") {
+    return [
+      "Service",
+      "Repair",
+      "Installation",
+      "Training",
+      "Consultation",
+      "Zero rated",
+      "Other",
+    ];
+  }
+
+  if (type === "hourstype") {
+    return ["Waranty", "Travel", "Standard", "After-Hours", "Other"];
+  }
+}
+
+function populatedropdowns() {
+  // populate dropdowns
+  var equipment = getdropdown("equipment");
+  var viewEquipment = document.getElementById("view-equipment");
+  var editEquipment = document.getElementById("edit-equipment");
+  var newEquipment = document.getElementById("new-equipment");
+  equipment.forEach(function (equipment) {
+    var option = document.createElement("option");
+    option.text = equipment;
+    viewEquipment.add(option);
+    var option = document.createElement("option");
+    option.text = equipment;
+    editEquipment.add(option);
+    var option = document.createElement("option");
+    option.text = equipment;
+    newEquipment.add(option);
+  });
+
+  var technician = getdropdown("technician");
+  var viewTechnician = document.getElementById("view-technician");
+  var editTechnician = document.getElementById("edit-technician");
+  var newTechnician = document.getElementById("new-technician");
+  var addlabourTechnician = document.getElementById("add-labour-technician");
+  var editlabourTechnician = document.getElementById("edit-labour-technician");
+  technician.forEach(function (technician) {
+    var option = document.createElement("option");
+    option.text = technician;
+    viewTechnician.add(option);
+    var option = document.createElement("option");
+    option.text = technician;
+    editTechnician.add(option);
+    var option = document.createElement("option");
+    option.text = technician;
+    newTechnician.add(option);
+    var option = document.createElement("option");
+    option.text = technician;
+    addlabourTechnician.add(option);
+    var option = document.createElement("option");
+    option.text = technician;
+    editlabourTechnician.add(option);
+  });
+
+  var servicetype = getdropdown("servicetype");
+  var viewServicetype = document.getElementById("view-service-type");
+  var editServicetype = document.getElementById("edit-service-type");
+  var newServicetype = document.getElementById("new-service-type");
+  servicetype.forEach(function (servicetype) {
+    var option = document.createElement("option");
+    option.text = servicetype;
+    viewServicetype.add(option);
+    var option = document.createElement("option");
+    option.text = servicetype;
+    editServicetype.add(option);
+    var option = document.createElement("option");
+    option.text = servicetype;
+    newServicetype.add(option);
+  });
+
+  var hourstype = getdropdown("hourstype");
+  var addlabourHourtype = document.getElementById("add-labour-hour-type");
+  var editlabourHourtype = document.getElementById("edit-labour-hour-type");
+  hourstype.forEach(function (hourstype) {
+    var option = document.createElement("option");
+    option.text = hourstype;
+    addlabourHourtype.add(option);
+    var option = document.createElement("option");
+    option.text = hourstype;
+    editlabourHourtype.add(option);
+  });
+}
+
+function updateglobal({ user = "", type = "", requestid = "" } = {}) {
+  if (user !== "") {
+    global.user = user;
+  }
+  if (type !== "") {
+    global.type = type;
+  }
+  if (requestid !== "") {
+    global.requestid = requestid;
+  }
 }
