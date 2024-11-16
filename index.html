@@ -56,7 +56,7 @@
           id="work-history-nav"
           class="nav-link"
           href="#work-history"
-          onclick="handleNavClick(this.id)"
+          onclick="handleNavClick(this.id), handlebuttonexistingrequests(event)"
           >
           Work History
           </a>
@@ -369,7 +369,7 @@
               <button
                 type="submit"
                 class="btn btn-dark w-50"
-                onclick="alert('Functionality Under Construction')"
+                onclick=handlebuttonexistingrequests(event)
               >
                 View Existing Request
               </button>
@@ -1347,7 +1347,7 @@
                 <button
                   type="submit"
                   class="btn btn-dark w-50"
-                  onclick="alert('Functionality Under Construction')"
+                  onclick= handlebuttonlogout(event)
                 >
                   LOG OUT
                 </button>
@@ -1358,7 +1358,7 @@
                 <button
                   type="submit"
                   class="btn btn-dark w-50"
-                  onclick="alert('Functionality Under Construction')"
+                  onclick= handlebuttoncancelogout(event)
                 >
                   CANCEL
                 </button>

@@ -114,8 +114,15 @@ function handlebuttonregisterregister(event) {
 
 function handlebuttonlogout(event) {
   event.preventDefault();
-  // log out code
-  // navigate
+  updateglobal({ user: "", type: "", company: "" });
+  updatenavbar("loggedout");
+  scrollToElement("login");
+}
+
+function handlebuttoncancelogout(event) {
+  event.preventDefault();
+  loadworkhistory();
+  scrollToElement("work-history");
 }
 
 function handlebuttonnewrequest(event) {
@@ -133,9 +140,8 @@ function handlebuttonsubmitnewrequest(event) {
 }
 
 function handlebuttonexistingrequests(event) {
-  alert(data);
-  // loadrequesthistory()
-  // navigate
+  loadworkhistory();
+  scrollToElement("work-history");
 }
 
 function handlebuttonviewmessages(event) {
