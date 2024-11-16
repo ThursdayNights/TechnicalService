@@ -46,7 +46,7 @@ var global = {
   company: "",
 };
 
-// SCRIPT
+// ON LOAD
 document.addEventListener("DOMContentLoaded", function () {
   var elements = document.querySelectorAll(".container.mt-5.content");
   elements.forEach(function (element) {
@@ -54,43 +54,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   scrollToElement("login");
   populatedropdowns();
+  updatenavbar("loggedout");
 });
 
-function handleNavClick(id) {
-  // for the id, find the href atribute
-  var href = document.getElementById(id).getAttribute("href");
-  // remove the leading # from the href this is the element we want to scroll to
-  var target = href.substring(1);
-  scrollToElement(target);
-  // Collapse the navbar in mobile view
-  var navbarCollapse = document.getElementById("navbarNav");
-  if (navbarCollapse.classList.contains("show")) {
-    navbarCollapse.classList.remove("show");
-  }
-}
+// BUTTON HANDLERS
 
-function scrollToElement(target) {
-  // navigate to the element with the id passed in the function
-  // extend with to , from, id
-  //  add "-screen" to the target
-  target = target + "-screen";
-  // find all elements with class="container mt-5 content" and hide them
-  var elements = document.querySelectorAll(".container.mt-5.content");
-  elements.forEach(function (element) {
-    element.style.display = "none";
-  });
-
-  // unhide the id passed in the function
-  var targetElement = document.getElementById(target);
-  if (targetElement) {
-    targetElement.style.display = "block";
-    console.log(`Element with ID ${target} is now visible.`);
-  } else {
-    console.error(`Element with ID ${target} not found.`);
-  }
-}
-
-// BUTTON FUNCTIONS
 function handlebuttonlogin(event) {
   event.preventDefault();
   var data = new FormData(event.target.form);
@@ -101,6 +69,7 @@ function handlebuttonlogin(event) {
   var { userverified, passwordverified, type } = checklogin(username, password);
   if (userverified && passwordverified) {
     updateglobal({ user: username, type: type, company: company });
+    updatenavbar("loggedin");
     if (type === "client") {
       scrollToElement("client-landing");
     } else if (type === "service") {
@@ -235,8 +204,177 @@ function handlebuttoneditnotes(event) {
   // navigate
 }
 
-// HELPER FUNCTIONS
-// Assuming users is an array of user objects defined somewhere in your code
+// EVENT HANDLERS
+function handleNavClick(id) {
+  // for the id, find the href atribute
+  var href = document.getElementById(id).getAttribute("href");
+  // remove the leading # from the href this is the element we want to scroll to
+  var target = href.substring(1);
+  scrollToElement(target);
+  // Collapse the navbar in mobile view
+  var navbarCollapse = document.getElementById("navbarNav");
+  if (navbarCollapse.classList.contains("show")) {
+    navbarCollapse.classList.remove("show");
+  }
+}
+
+function scrollToElement(target) {
+  // navigate to the element with the id passed in the function
+  // extend with to , from, id
+  //  add "-screen" to the target
+  target = target + "-screen";
+  // find all elements with class="container mt-5 content" and hide them
+  var elements = document.querySelectorAll(".container.mt-5.content");
+  elements.forEach(function (element) {
+    element.style.display = "none";
+  });
+
+  // unhide the id passed in the function
+  var targetElement = document.getElementById(target);
+  if (targetElement) {
+    targetElement.style.display = "block";
+    console.log(`Element with ID ${target} is now visible.`);
+  } else {
+    console.error(`Element with ID ${target} not found.`);
+  }
+}
+
+function populatedropdowns() {
+  // populate dropdowns
+  var equipment = getdropdown("equipment");
+  var editEquipment = document.getElementById("edit-equipment");
+  var newEquipment = document.getElementById("new-equipment");
+  equipment.forEach(function (equipment) {
+    var option = document.createElement("option");
+    option.text = equipment;
+    editEquipment.add(option);
+    var option = document.createElement("option");
+    option.text = equipment;
+    newEquipment.add(option);
+  });
+
+  var technician = getdropdown("technician");
+  var editTechnician = document.getElementById("edit-technician");
+  var newTechnician = document.getElementById("new-technician");
+  var addlabourTechnician = document.getElementById("add-labour-technician");
+  var editlabourTechnician = document.getElementById("edit-labour-technician");
+  technician.forEach(function (technician) {
+    var option = document.createElement("option");
+    option.text = technician;
+    editTechnician.add(option);
+    var option = document.createElement("option");
+    option.text = technician;
+    newTechnician.add(option);
+    var option = document.createElement("option");
+    option.text = technician;
+    addlabourTechnician.add(option);
+    var option = document.createElement("option");
+    option.text = technician;
+    editlabourTechnician.add(option);
+  });
+
+  var servicetype = getdropdown("servicetype");
+  var editServicetype = document.getElementById("edit-service-type");
+  var newServicetype = document.getElementById("new-service-type");
+  servicetype.forEach(function (servicetype) {
+    var option = document.createElement("option");
+    option.text = servicetype;
+    editServicetype.add(option);
+    var option = document.createElement("option");
+    option.text = servicetype;
+    newServicetype.add(option);
+  });
+
+  var hourstype = getdropdown("hourstype");
+  var addlabourHourtype = document.getElementById("add-labour-hour-type");
+  var editlabourHourtype = document.getElementById("edit-labour-hour-type");
+  hourstype.forEach(function (hourstype) {
+    var option = document.createElement("option");
+    option.text = hourstype;
+    addlabourHourtype.add(option);
+    var option = document.createElement("option");
+    option.text = hourstype;
+    editlabourHourtype.add(option);
+  });
+}
+
+function updateglobal({ user = "", type = "", requestid = "" } = {}) {
+  if (user !== "") {
+    global.user = user;
+  }
+  if (type !== "") {
+    global.type = type;
+  }
+  if (requestid !== "") {
+    global.requestid = requestid;
+  }
+}
+
+function updatenavbar(status) {
+  function update(element, display) {
+    var element = document.getElementById(element);
+    console.log("element: " + element);
+    if (element) {
+      element.style.display = display;
+    } else {
+      console.error(`Element with ID ${element} not found.`);
+    }
+  }
+
+  if (status === "loggedout") {
+    update("new-request-nav", "none");
+    update("work-history-nav", "none");
+    update("messages-nav", "none");
+    update("log-out-nav", "none");
+    update("login-nav", "block");
+  }
+  if (status === "loggedin") {
+    update("new-request-nav", "block");
+    update("work-history-nav", "block");
+    update("messages-nav", "block");
+    update("log-out-nav", "block");
+    update("login-nav", "none");
+  }
+}
+
+// DATA HELPER FUNCTIONS
+function getdropdown(type) {
+  if (type === "technician") {
+    // return username from users where type is service
+    return users
+      .filter((user) => user.type === "service")
+      .map((user) => user.username);
+  }
+  if (type === "equipment") {
+    return [
+      "Arburg",
+      "Engel",
+      "Haitian",
+      "Husky",
+      "Krauss Maffei",
+      "Negri Bossi",
+      "Netstal",
+      "Sumitomo",
+      "Toshiba",
+      "Van Dorn",
+    ];
+  }
+  if (type === "servicetype") {
+    return [
+      "Service",
+      "Repair",
+      "Installation",
+      "Training",
+      "Consultation",
+      "Zero rated",
+      "Other",
+    ];
+  }
+
+  if (type === "hourstype") {
+    return ["Waranty", "Travel", "Standard", "After-Hours", "Other"];
+  }
+}
 
 function checklogin(username, password) {
   // check login credentials against users in users.js
@@ -381,6 +519,12 @@ function submitnewrequest() {
 
 function loadworkhistory() {
   // load work history into works-history-table
+
+  // convert cell3 reguest.status to a button
+  // add a click event to the button
+  // when the button is clicked, updateglobal({requestid: request.requestid})
+  // scrollToElement("view-request")
+
   var table = document.getElementById("work-history-table");
   if (!table) {
     console.error("Element with ID 'work-history-table' not found.");
@@ -394,127 +538,30 @@ function loadworkhistory() {
 
     cell1.innerHTML = request.requestid;
     cell2.innerHTML = request.date;
-    cell3.innerHTML = request.status;
+
+    var statusButton = document.createElement("button");
+    statusButton.innerHTML = request.status;
+    statusButton.className = "btn btn-link";
+    statusButton.addEventListener("click", function () {
+      updateglobal({ requestid: request.requestid });
+      viewrequest();
+      scrollToElement("view-request");
+    });
+    cell3.appendChild(statusButton);
   });
 }
 
-function getdropdown(type) {
-  if (type === "technician") {
-    // return username from users where type is service
-    return users
-      .filter((user) => user.type === "service")
-      .map((user) => user.username);
-  }
-  if (type === "equipment") {
-    return [
-      "Arburg",
-      "Engel",
-      "Haitian",
-      "Husky",
-      "Krauss Maffei",
-      "Negri Bossi",
-      "Netstal",
-      "Sumitomo",
-      "Toshiba",
-      "Van Dorn",
-    ];
-  }
-  if (type === "servicetype") {
-    return [
-      "Service",
-      "Repair",
-      "Installation",
-      "Training",
-      "Consultation",
-      "Zero rated",
-      "Other",
-    ];
-  }
-
-  if (type === "hourstype") {
-    return ["Waranty", "Travel", "Standard", "After-Hours", "Other"];
-  }
-}
-
-function populatedropdowns() {
-  // populate dropdowns
-  var equipment = getdropdown("equipment");
-  var viewEquipment = document.getElementById("view-equipment");
-  var editEquipment = document.getElementById("edit-equipment");
-  var newEquipment = document.getElementById("new-equipment");
-  equipment.forEach(function (equipment) {
-    var option = document.createElement("option");
-    option.text = equipment;
-    viewEquipment.add(option);
-    var option = document.createElement("option");
-    option.text = equipment;
-    editEquipment.add(option);
-    var option = document.createElement("option");
-    option.text = equipment;
-    newEquipment.add(option);
-  });
-
-  var technician = getdropdown("technician");
-  var viewTechnician = document.getElementById("view-technician");
-  var editTechnician = document.getElementById("edit-technician");
-  var newTechnician = document.getElementById("new-technician");
-  var addlabourTechnician = document.getElementById("add-labour-technician");
-  var editlabourTechnician = document.getElementById("edit-labour-technician");
-  technician.forEach(function (technician) {
-    var option = document.createElement("option");
-    option.text = technician;
-    viewTechnician.add(option);
-    var option = document.createElement("option");
-    option.text = technician;
-    editTechnician.add(option);
-    var option = document.createElement("option");
-    option.text = technician;
-    newTechnician.add(option);
-    var option = document.createElement("option");
-    option.text = technician;
-    addlabourTechnician.add(option);
-    var option = document.createElement("option");
-    option.text = technician;
-    editlabourTechnician.add(option);
-  });
-
-  var servicetype = getdropdown("servicetype");
-  var viewServicetype = document.getElementById("view-service-type");
-  var editServicetype = document.getElementById("edit-service-type");
-  var newServicetype = document.getElementById("new-service-type");
-  servicetype.forEach(function (servicetype) {
-    var option = document.createElement("option");
-    option.text = servicetype;
-    viewServicetype.add(option);
-    var option = document.createElement("option");
-    option.text = servicetype;
-    editServicetype.add(option);
-    var option = document.createElement("option");
-    option.text = servicetype;
-    newServicetype.add(option);
-  });
-
-  var hourstype = getdropdown("hourstype");
-  var addlabourHourtype = document.getElementById("add-labour-hour-type");
-  var editlabourHourtype = document.getElementById("edit-labour-hour-type");
-  hourstype.forEach(function (hourstype) {
-    var option = document.createElement("option");
-    option.text = hourstype;
-    addlabourHourtype.add(option);
-    var option = document.createElement("option");
-    option.text = hourstype;
-    editlabourHourtype.add(option);
-  });
-}
-
-function updateglobal({ user = "", type = "", requestid = "" } = {}) {
-  if (user !== "") {
-    global.user = user;
-  }
-  if (type !== "") {
-    global.type = type;
-  }
-  if (requestid !== "") {
-    global.requestid = requestid;
+function viewrequest() {
+  var request = cases.find((request) => request.requestid === global.requestid);
+  if (request) {
+    document.getElementById("view-request-number").value = request.requestid;
+    document.getElementById("view-service-type").value = request.servicetype;
+    document.getElementById("view-technician").value = request.technician;
+    document.getElementById("view-equipment").value = request.equipment;
+    document.getElementById("view-serial-number").value = request.serialnumber;
+    document.getElementById("view-problem-description").value =
+      request.description;
+  } else {
+    console.error(`Request with ID ${global.requestid} not found.`);
   }
 }
