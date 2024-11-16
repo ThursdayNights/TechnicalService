@@ -149,6 +149,8 @@ function handlebuttonnewrequest(event) {
   event.preventDefault();
   createnewrequest();
   loadnewrequest();
+
+  loadmessagehistoryrequest(global.requestid);
   scrollToElement("new-request");
 }
 
@@ -456,6 +458,38 @@ function loadmessagehistory() {
       (message) => message.company === global.company
     );
   }
+  console.log("messages loaded");
+  console.log(loadmessages);
+  loadmessages.forEach(function (message) {
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+
+    cell1.innerHTML = message.id;
+    cell2.innerHTML = message.owner;
+    cell3.innerHTML = message.message;
+    cell4.innerHTML = message.date;
+  });
+}
+
+function loadmessagehistoryrequest(id) {
+  console.log("loadmessagehistoryrequest");
+  console.log(id);
+  var tablebody = document.getElementById("view-messages-table-body");
+  // delete all rows in tablebody
+  while (tablebody.firstChild) {
+    tablebody.removeChild(tablebody.firstChild);
+  }
+
+  var table = document.getElementById("view-messages-table");
+  var loadmessages = [];
+
+  loadmessages = messages.filter((message) => message.requestid === id);
+  console.log("messages loaded");
+  console.log(loadmessages);
+
   console.log("messages loaded");
   console.log(loadmessages);
   loadmessages.forEach(function (message) {
