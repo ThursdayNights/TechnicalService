@@ -424,7 +424,7 @@
               <button
                 type="submit"
                 class="btn btn-dark w-50"
-                onclick= handlebuttonsubmitnewrequest(event)
+                onclick= handlebuttonnewrequest(event)  
               >
                 Create New Request
               </button>
@@ -573,13 +573,16 @@
                     placeholder="Problem Description"
                   />
                 </div>
+                <div id = "edit-request-button"> 
                 <button
                   type="submit"
+                  
                   class="btn btn-dark w-50"
                   onclick="alert('Functionality Under Construction')"
                 >
                   EDIT REQUEST
                 </button>
+              </div>
               </form>
               <br />
               <br />
@@ -625,6 +628,7 @@
                     </div>
                     <br />
                     <br />
+                    <div id="add-labour-button">
                     <button
                       type="submit"
                       class="btn btn-dark w-50"
@@ -632,6 +636,7 @@
                     >
                       Add Labour
                     </button>
+                  </div>
                     <br />
                   </div>
                 </div>
@@ -647,6 +652,7 @@
                     </div>
                     <br />
                     <br />
+                    <div id = "add-parts-button">
                     <button
                       type="submit"
                       class="btn btn-dark w-50"
@@ -654,6 +660,7 @@
                     >
                       Add Parts
                     </button>
+                  </div>
                     <br />
                   </div>
                 </div>
@@ -1170,7 +1177,7 @@
                   <button
                     type="submit"
                     class="btn btn-dark w-50"
-                    onclick="alert('Functionality Under Construction')"
+                    onclick=  handlebuttoncancelnewrequest(event)
                   >
                     CANCEL
                   </button>

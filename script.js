@@ -84,6 +84,7 @@ function handlebuttonlogin(event) {
     updateglobal({ user: username, type: type, company: company });
 
     updatenavbar("loggedin");
+    showbuttons(type);
     loadmessagehistory();
     loadworkhistory();
 
@@ -134,6 +135,8 @@ function handlebuttonlogout(event) {
   updateglobal({ user: "", type: "", company: "" });
   updatenavbar("loggedout");
   scrollToElement("login");
+  // reload html page
+  location.reload();
 }
 
 function handlebuttoncancelogout(event) {
@@ -181,9 +184,8 @@ function handlebuttoneditrequest(event) {
   // navigate
 }
 
-function handlebuttoncancelrequest(event) {
-  // cancelrequest()
-  // navigate
+function handlebuttoncancelnewrequest(event) {
+  scrollToElement("work-history");
 }
 
 function handlebuttonaddlabour(event) {
@@ -335,16 +337,16 @@ function updateglobal({
   }
 }
 
-function updatenavbar(status) {
-  function update(element, display) {
-    var element = document.getElementById(element);
-    if (element) {
-      element.style.display = display;
-    } else {
-      console.error(`Element with ID ${element} not found.`);
-    }
+function update(element, display) {
+  var element = document.getElementById(element);
+  if (element) {
+    element.style.display = display;
+  } else {
+    console.error(`Element with ID ${element} not found.`);
   }
+}
 
+function updatenavbar(status) {
   if (status === "loggedout") {
     update("new-request-nav", "none");
     update("work-history-nav", "none");
@@ -358,6 +360,19 @@ function updatenavbar(status) {
     update("messages-nav", "block");
     update("log-out-nav", "block");
     update("login-nav", "none");
+  }
+}
+
+function showbuttons(type) {
+  if (type === "client") {
+    document.getElementById("edit-request-button").style.display = "none";
+    document.getElementById("add-labour-button").style.display = "none";
+    document.getElementById("add-parts-button").style.display = "none";
+  }
+  if (type === "service") {
+    document.getElementById("edit-request-button").style.display = "block";
+    document.getElementById("add-labour-button").style.display = "block";
+    document.getElementById("add-parts-button").style.display = "block";
   }
 }
 
@@ -569,7 +584,7 @@ function loadworkhistory() {
   // add a click event to the button
   // when the button is clicked, updateglobal({requestid: request.requestid})
   // scrollToElement("view-request")
-
+  cleanupworkhistory();
   var tablebody = document.getElementById("work-history-table-body");
   // delete all rows in tablebody
   while (tablebody.firstChild) {
@@ -605,6 +620,11 @@ function loadworkhistory() {
     });
     cell3.appendChild(statusButton);
   });
+}
+
+function cleanupworkhistory() {
+  // delete all objects in cases date is not there
+  cases = cases.filter((request) => request.date);
 }
 
 function viewrequest() {
