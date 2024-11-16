@@ -2,6 +2,7 @@
 var cases = [
   {
     requestid: 1,
+    company: "BritsPlas",
     servicetype: "Repair",
     technician: "Victor",
     equipment: "Arburg",
@@ -11,14 +12,6 @@ var cases = [
     created: "2024-10-02",
     date: "2024-10-10",
     time: "10:00",
-    notes: [
-      {
-        noteid: 1,
-        noteowner: "Lourens",
-        note: "This is the first note",
-        notedate: "2024-10-02",
-      },
-    ],
     parts: [
       { partid: 1, parts: "This is a list of parts", partdate: "2024-10-02" },
     ],
@@ -33,9 +26,29 @@ var cases = [
     ],
   },
 ];
+var messages = [
+  {
+    id: 1,
+    requestid: 1,
+    company: "BritsPlas",
+    owner: "Lourens",
+    message: "This is the first note",
+    date: "2024-10-02",
+  },
+  {
+    id: 2,
+    requestid: 1,
+    company: "BritsPlas",
+    owner: "Juanita",
+    message: "This is the second note",
+    date: "2024-10-04",
+  },
+];
+
 // Duplicate definition removed
 var users = [
   { username: "vicus", password: "123", type: "client", company: "BritsPlas" },
+  { username: "joe", password: "123", type: "client", company: "JoePlas" },
   { username: "juanita", password: "123", type: "service", company: "Hestico" },
   { username: "lourens", password: "123", type: "service", company: "Hestico" },
 ];
@@ -69,7 +82,11 @@ function handlebuttonlogin(event) {
   var { userverified, passwordverified, type } = checklogin(username, password);
   if (userverified && passwordverified) {
     updateglobal({ user: username, type: type, company: company });
+
     updatenavbar("loggedin");
+    loadmessagehistory();
+    loadworkhistory();
+
     if (type === "client") {
       scrollToElement("client-landing");
     } else if (type === "service") {
@@ -145,37 +162,31 @@ function handlebuttonexistingrequests(event) {
 }
 
 function handlebuttonviewmessages(event) {
-  alert(data);
-  // loadmessagehistory()
-  // navigate
+  // loadmessagehistory();
+  scrollToElement("all-messages");
 }
 
 function handlebuttonrequeststatus(event) {
-  alert(data);
   // loadrequest()
   // navigate
 }
 
 function handlebuttonapproverequest(event) {
-  alert(data);
   // approverequest()
   // navigate
 }
 
 function handlebuttoneditrequest(event) {
-  alert(data);
   // editrequest()
   // navigate
 }
 
 function handlebuttoncancelrequest(event) {
-  alert(data);
   // cancelrequest()
   // navigate
 }
 
 function handlebuttonaddlabour(event) {
-  alert(data);
   // addlabour()
   // navigate
 }
@@ -304,7 +315,12 @@ function populatedropdowns() {
   });
 }
 
-function updateglobal({ user = "", type = "", requestid = "" } = {}) {
+function updateglobal({
+  user = "",
+  type = "",
+  requestid = "",
+  company = "",
+} = {}) {
   if (user !== "") {
     global.user = user;
   }
@@ -314,12 +330,14 @@ function updateglobal({ user = "", type = "", requestid = "" } = {}) {
   if (requestid !== "") {
     global.requestid = requestid;
   }
+  if (company !== "") {
+    global.company = company;
+  }
 }
 
 function updatenavbar(status) {
   function update(element, display) {
     var element = document.getElementById(element);
-    console.log("element: " + element);
     if (element) {
       element.style.display = display;
     } else {
@@ -403,16 +421,40 @@ function checklogin(username, password) {
 }
 
 function sendmessage(data) {
-  alert(data);
   // send message -- WhatsApp for business API integration
 }
 
-function loadrequesthistory() {
-  // load work history
-}
-
 function loadmessagehistory() {
-  // load message history
+  var tablebody = document.getElementById("messages-table-body");
+  // delete all rows in tablebody
+  while (tablebody.firstChild) {
+    tablebody.removeChild(tablebody.firstChild);
+  }
+
+  var table = document.getElementById("messages-table");
+  var loadmessages = [];
+  console.log("company cases : " + global.company);
+  if (global.company === "Hestico") {
+    loadmessages = messages;
+  } else {
+    loadmessages = messages.filter(
+      (message) => message.company === global.company
+    );
+  }
+  console.log("messages loaded");
+  console.log(loadmessages);
+  loadmessages.forEach(function (message) {
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+
+    cell1.innerHTML = message.id;
+    cell2.innerHTML = message.owner;
+    cell3.innerHTML = message.message;
+    cell4.innerHTML = message.date;
+  });
 }
 
 function loadrequest() {
@@ -456,7 +498,6 @@ function editnotes() {
 }
 
 function createnewrequest() {
-  console.log("Company: " + global.company);
   var newrequestid = Math.max(...cases.map((request) => request.requestid)) + 1;
   var newrequest = {
     requestid: newrequestid,
@@ -525,18 +566,27 @@ function submitnewrequest() {
 
 function loadworkhistory() {
   // load work history into works-history-table
-
-  // convert cell3 reguest.status to a button
   // add a click event to the button
   // when the button is clicked, updateglobal({requestid: request.requestid})
   // scrollToElement("view-request")
 
-  var table = document.getElementById("work-history-table");
-  if (!table) {
-    console.error("Element with ID 'work-history-table' not found.");
-    return;
+  var tablebody = document.getElementById("work-history-table-body");
+  // delete all rows in tablebody
+  while (tablebody.firstChild) {
+    tablebody.removeChild(tablebody.firstChild);
   }
-  cases.forEach(function (request) {
+
+  var table = document.getElementById("work-history-table");
+  // if company = hestico loadcasescases = cases
+  // else loadcases = cases where global.company = company
+  console.log("company cases : " + global.company);
+  if (global.company === "Hestico") {
+    loadcases = cases;
+  } else {
+    loadcases = cases.filter((request) => request.company === global.company);
+  }
+
+  loadcases.forEach(function (request) {
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);

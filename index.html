@@ -6,7 +6,7 @@
     <title>Hestico Service Centre</title>
 
     <!-- iOS Specific Meta Tags -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes">
     <meta
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
@@ -378,7 +378,7 @@
               <button
                 type="submit"
                 class="btn btn-dark w-50"
-                onclick="alert('Functionality Under Construction')"
+                onclick=handlebuttonviewmessages(event)
               >
                 View Messages
               </button>
@@ -386,7 +386,7 @@
             <br />
             <img class="landing-image" src="images/Arburg.png" alt="Arburg" />
             <p>
-              Call us for a qoute on the super efficient Arburg electric all
+              Call us for a quote on the super efficient Arburg electric all
               rounder
             </p>
           </div>
@@ -415,7 +415,7 @@
                     <th scope="col">Status</th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody id="work-history-table-body" ></tbody>
               </table>
 
               </div>
@@ -424,7 +424,7 @@
               <button
                 type="submit"
                 class="btn btn-dark w-50"
-                onclick="alert('Functionality Under Construction')"
+                onclick= handlebuttonsubmitnewrequest(event)
               >
                 Create New Request
               </button>
@@ -446,15 +446,28 @@
             <div class="card-body">
               <h3>All Messages</h3>
               <br />
-              <div id="messages-table">
-                <p>Place holder for messages</p>
+              
+                <div class = "table table-striped">
+                  <table  id="messages-table">                 
+                    <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Owner</th>
+                      <th scope="col">Message</th>
+                      <th scope="col">date</th>
+                    </tr>
+                  </thead>
+                  <tbody id="messages-table-body" ></tbody>
+                </table>
+  
+                
               </div>
               <br />
               <br />
               <button
                 type="submit"
                 class="btn btn-dark w-50"
-                onclick="alert('Functionality Under Construction')"
+                onclick=handlebuttonexistingrequests(event)
               >
                 View all Requests
               </button>
