@@ -15,15 +15,6 @@ var cases = [
     parts: [
       { partid: 1, parts: "This is a list of parts", partdate: "2024-10-02" },
     ],
-    labour: [
-      {
-        labourid: 1,
-        technician: "Lourens",
-        labourdetial: "Text Description",
-        hourtype: "",
-        labourhours: "",
-      },
-    ],
   },
 ];
 var messages = [
@@ -42,6 +33,23 @@ var messages = [
     owner: "Juanita",
     message: "This is the second note",
     date: "2024-10-04",
+  },
+];
+
+var labour = [
+  {
+    labourid: 1,
+    technician: "Lourens",
+    labourdetial: "Text Description",
+    hourtype: "Service",
+    labourhours: "3",
+  },
+  {
+    labourid: 2,
+    technician: "Gus",
+    labourdetial: "Another Text Description",
+    hourtype: "Travel",
+    labourhours: "1",
   },
 ];
 
@@ -506,6 +514,36 @@ function loadmessagehistoryrequest(id) {
   });
 }
 
+function loadlabourhistoryrequest(id) {
+  var tablebody = document.getElementById("view-messages-table-body"); // VB
+  // delete all rows in tablebody
+  while (tablebody.firstChild) {
+    tablebody.removeChild(tablebody.firstChild);
+  }
+
+  var table = document.getElementById("view-messages-table");
+  var loadmessages = [];
+
+  loadmessages = messages.filter((message) => message.requestid === id);
+  console.log("messages loaded");
+  console.log(loadmessages);
+
+  console.log("messages loaded");
+  console.log(loadmessages);
+  loadmessages.forEach(function (message) {
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+
+    cell1.innerHTML = message.id;
+    cell2.innerHTML = message.owner;
+    cell3.innerHTML = message.message;
+    cell4.innerHTML = message.date;
+  });
+}
+
 function loadrequest() {
   // load request
 }
@@ -662,6 +700,9 @@ function cleanupworkhistory() {
 }
 
 function viewrequest() {
+  loadmessagehistoryrequest(global.requestid);
+  // loadlabourhistoryrequest(global.requestid);
+  // loadpartshistoryrequest(global.requestid);
   var request = cases.find((request) => request.requestid === global.requestid);
   if (request) {
     document.getElementById("view-request-number").value = request.requestid;
