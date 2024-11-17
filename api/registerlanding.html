@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head id="head"></head>
+  <body>
+    <div id="header"></div>
+    <div id="navbar"></div>
+    <main>
+      <div id="register-screen" class="container mt-5 content">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <h3 class="text-center">Welcome on Board!!</h3>
+            <br />
+            <p>Please check your inbox for login details</p>
+            <div>
+              <button
+                type="submit"
+                class="btn btn-dark w-50"
+                onclick="handleregister(event)"
+              >
+                LOGIN
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="footer"></div>
+    <script>
+      // Load reusable components
+      async function loadComponents() {
+        document.getElementById("head").innerHTML = await (
+          await fetch("core/head.html")
+        ).text();
+        document.getElementById("navbar").innerHTML = await (
+          await fetch("core/navbar.html")
+        ).text();
+        document.getElementById("footer").innerHTML = await (
+          await fetch("core/footer.html")
+        ).text();
+      }
+      loadComponents();
+    </script>
+  </body>
+</html>

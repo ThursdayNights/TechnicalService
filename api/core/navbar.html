@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Hestico Service Centre</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- #work-history -->
+        <li class="nav-item">
+          <a
+            id="work-history-nav"
+            class="nav-link"
+            href="#work-history"
+            onclick="handleNavClick(this.id), handlebuttonexistingrequests(event)"
+          >
+            Work History
+          </a>
+        </li>
+        <!-- #all-messages -->
+        <li class="nav-item">
+          <a
+            id="messages-nav"
+            class="nav-link"
+            href="#all-messages"
+            onclick="handleNavClick(this.id)"
+          >
+            Messages
+          </a>
+        </li>
+        <!-- #new-request -->
+        <li class="nav-item">
+          <a
+            id="new-request-nav"
+            class="nav-link active"
+            href="#new-request"
+            onclick="handleNavClick(this.id)"
+          >
+            New Request
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <!-- #login -->
+        <li class="nav-item">
+          <a
+            id="login-nav"
+            name="login-nav"
+            class="nav-link active"
+            href="#login"
+            onclick="handleNavClick(this.id)"
+          >
+            Log In
+          </a>
+        </li>
+        <!-- #log-out -->
+        <li class="nav-item">
+          <a
+            id="log-out-nav"
+            class="nav-link active"
+            href="#log-out"
+            onclick="handleNavClick(this.id)"
+          >
+            Log Out
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
