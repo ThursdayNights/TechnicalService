@@ -4,73 +4,86 @@
   <body>
     <div id="header"></div>
     <div id="navbar"></div>
-
-    <div id="register-screen" class="container mt-5 content">
+    <div id="view-requests-screen" class="container mt-5 content">
       <div class="row justify-content-center">
         <div class="col-md-6">
-          <h3 class="text-center">Register</h3>
-          <form>
+          <h3 class="text-center">View Requests</h3>
+          <form id="request-screen-form">
             <div class="mb-3">
-              <label for="first_name" class="form-label">First Name</label>
               <input
                 type="text"
                 class="form-control"
-                id="first_name"
-                name="first_name"
-                placeholder="First Name"
+                id="request-number"
+                name="request-number"
+                placeholder="Request Number"
               />
             </div>
             <div class="mb-3">
-              <label for="last_name" class="form-label">Last Name</label>
               <input
-                type="text"
+                type="date"
                 class="form-control"
-                id="last_name"
-                name="last_name"
-                placeholder="Last Name"
+                id="date"
+                name="date"
+                placeholder="Date"
               />
             </div>
+
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
               <input
                 type="text"
                 class="form-control"
-                id="email"
-                name="email"
-                placeholder="Email"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="mobile" class="form-label">Mobile Number</label>
-              <input
-                type="text"
-                class="form-control"
-                id="mobile"
-                name="mobile"
-                placeholder="Mobile Number"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input
-                type="text"
-                class="form-control"
-                id="password"
-                name="password"
-                placeholder="Password"
+                id="problem-description"
+                name="problem-description"
+                placeholder="Description"
               />
             </div>
             <button
+              id="view-button"
               type="submit"
               class="btn btn-dark w-50"
-              onclick="handleregister(event)"
+              onclick="handlenavigateTo(event, 'viewrequest')"
             >
-              REGISTER
+              VIEW
+            </button>
+            <br />
+            <br />
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="request-number2"
+                name="request-number"
+                placeholder="Request Number"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="date"
+                class="form-control"
+                id="date2"
+                name="date"
+                placeholder="Date"
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="problem-description2"
+                name="problem-description"
+                placeholder="Description"
+              />
+            </div>
+            <button
+              id="view-button2"
+              type="submit"
+              class="btn btn-dark w-50"
+              onclick="handlenavigateTo(event, 'viewrequest')"
+            >
+              VIEW
             </button>
           </form>
-          <br />
-          <br />
-          <div id="response"></div>
         </div>
       </div>
     </div>

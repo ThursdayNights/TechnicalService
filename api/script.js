@@ -1,82 +1,85 @@
 function navigateTo(page) {
-  if (page === "register") {
-    alert("Navigating to Register Page");
-    // Replace the alert with actual navigation code
-    window.location.href = "register.html";
-  } else if (page === "login") {
-    alert("Navigating to Login Page");
-    // Replace the alert with actual navigation code
-    // Example: window.location.href = 'login.html';
+  if (page) {
+    window.location.href = `${page}.html`;
+  } else {
+    console.error("Invalid page name");
   }
 }
 
+function handlenavigateTo(event, page) {
+  event.preventDefault();
+
+  navigateTo(page);
+}
+
+// buttonhandlers
 function handleregister(event) {
-  event.preventDefault(); // Prevent the default form submission
-
-  const form = event.target.closest("form");
-  if (form) {
-    registeruser(form);
-  }
+  event.preventDefault();
+  navigateTo("registerlanding");
+}
+function handlelogin(event) {
+  event.preventDefault();
+  navigateTo("clientlanding");
 }
 
-async function registeruser(form) {
-  // Get the form data
-  const formData = new FormData(form);
+// datahandlers
+// async function handleregister(event) {
+//   event.preventDefault();
+//   const password = document.getElementById("password").value;
+//   const first_name = document.getElementById("first_name").value;
+//   const last_name = document.getElementById("last_name").value;
+//   const email = document.getElementById("email").value;
 
-  // Convert form data to a JSON object
-  const jsonObject = {};
-  formData.forEach((value, key) => {
-    jsonObject[key] = value;
-  });
+//   const payload = {
+//     username: email,
+//     password,
+//     first_name,
+//     last_name,
+//     email,
+//     role: "user",
+//   };
 
-  // Convert the JSON object to a string
-  const jsonString = JSON.stringify(jsonObject);
-  // remove mobile
-  delete jsonObject.mobile;
-  // add "role": "user"
-  jsonObject.role = "user";
-  // add "username":  and set it to email
-  jsonObject.username = jsonObject.email;
+//   const responseElement = document.getElementById("response");
+//   responseElement.innerHTML = "<p>Sending request...</p>";
 
-  // Print debug information to the console
-  console.log("Form Data Object:", jsonObject);
-  console.log("Form Data JSON String:", jsonString);
+//   console.log(JSON.stringify(payload));
+//   try {
+//     // const result = await response.json();
+//     const response = await fetch(
+//       "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/register/",
+//       {
+//         method: "POST",
+//         headers: {
+//           accept: "application/json",
+//           "Content-Type": "application/json",
+//           "X-CSRFTOKEN":
+//             "UV9VKKgfS13D4cHMgUeAhoGrD2eijGIvUV6L8QUa9KMXPfVZPDC6bmxqFTvIHuwT",
+//         },
+//         body: JSON.stringify(payload),
+//       }
+//     );
 
-  // Send the JSON string to the server
-  try {
-    const response = await fetch(
-      "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/register/",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "X-CSRFTOKEN":
-            "UV9VKKgfS13D4cHMgUeAhoGrD2eijGIvUV6L8QUa9KMXPfVZPDC6bmxqFTvIHuwT",
-        },
-        body: jsonString,
-      }
-    );
+//     const result = await response.json();
 
-    const result = await response.json();
-    console.log("Server Response:", result);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
-
-// const response = await fetch(
-//   "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/register/",
-//   {
-//     method: "POST",
-//     headers: {
-//       accept: "application/json",
-//       "Content-Type": "application/json",
-//       "X-CSRFTOKEN":
-//         "UV9VKKgfS13D4cHMgUeAhoGrD2eijGIvUV6L8QUa9KMXPfVZPDC6bmxqFTvIHuwT",
-//     },
-//     body: JSON.stringify(payload),
+//     if (response.ok) {
+//       responseElement.innerHTML = `
+//       <h3>Registration Successful</h3>
+//       <p><strong>Username:</strong> ${result.username}</p>
+//       <p><strong>Email:</strong> ${result.email}</p>
+//       <p><strong>First Name:</strong> ${result.first_name}</p>
+//       <p><strong>Last Name:</strong> ${result.last_name}</p>
+//     `;
+//     } else {
+//       responseElement.innerHTML = `
+//       <h3 class="error">Registration Failed</h3>
+//       <p><strong>Status:</strong> ${response.status}</p>
+//       <p><strong>Message:</strong> ${result.detail || "An error occurred"}</p>
+//     `;
+//     }
+//   } catch (error) {
+//     responseElement.innerHTML = `
+//     <h3 class="error">Error</h3>
+//     <p>${error.message}</p>
+//   `;
 //   }
-// );
-
-// const result = await response.json();
+// }

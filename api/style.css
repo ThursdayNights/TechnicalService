@@ -76,3 +76,10 @@ body {
 .text-center .form-label {
   text-align: left;
 }
+
+.notes {
+  max-width: 60%;
+  background-color: lightcyan;
+  margin: 0 auto;
+  text-align: center;
+}
