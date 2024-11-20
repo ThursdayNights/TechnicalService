@@ -4,51 +4,58 @@
   <body>
     <div id="header"></div>
     <div id="navbar"></div>
-    <div id="login-screen" class="container mt-5 content">
+    <div id="update-message-screen" class="container mt-5 content">
       <div class="row justify-content-center">
         <div class="col-md-6">
-          <h3 class="text-center">Login</h3>
-          <form>
+          <h3 class="text-center">Edit Messages</h3>
+          <form id="update-message-screen-form">
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
+              <label for="message-number" class="form-label">Message ID</label>
               <input
                 type="text"
                 class="form-control"
-                id="email"
-                name="email"
-                placeholder="Email"
+                id="message-number"
+                name="message-number"
+                placeholder="Message Number"
               />
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
+              <label for="date" class="form-label">Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date"
+                name="date"
+                placeholder="Date"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="message-description" class="form-label">
+                Message
+              </label>
               <input
                 type="text"
                 class="form-control"
-                id="password"
-                name="password"
-                placeholder="Password"
+                id="message-description"
+                name="message-description"
+                placeholder="Message"
               />
             </div>
             <button
+              id="view-button"
               type="submit"
               class="btn btn-dark w-50"
-              onclick="handlelogin(event)"
+              onclick="handlenavigateTo(event, 'viewrequest')"
             >
-              LOGIN
+              UPDATE
             </button>
           </form>
-
           <br />
-          <div class="notes">Dif to provide API example call for login</div>
           <br />
-          <div class="notes">
-            Vicus to add screens for Update and Reset password
-          </div>
-          <br />
-          <div id="response"></div>
         </div>
       </div>
     </div>
+
     <div id="footer"></div>
     <script>
       // Load reusable components

@@ -4,19 +4,25 @@
   <body>
     <div id="header"></div>
     <div id="navbar"></div>
-    <div id="view-requests-screen" class="container mt-5 content">
+    <div id="view-messages-screen" class="container mt-5 content">
       <div class="row justify-content-center">
         <div class="col-md-6">
-          <h3 class="text-center">View Requests</h3>
+          <h3 class="text-center">View Messages</h3>
           <form id="request-screen-form">
+            <p>In order to create a new message, you need to edit a request.</p>
+            <div class="notes">
+              <p>We need a more elegant way to handle this</p>
+            </div>
+            <br />
+            <br />
             <div class="mb-3">
-              <label for="request-number" class="form-label">Request ID</label>
+              <label for="message-number" class="form-label">Message ID</label>
               <input
                 type="text"
                 class="form-control"
-                id="request-number"
-                name="request-number"
-                placeholder="Request Number"
+                id="message-number"
+                name="message-number"
+                placeholder="Message Number"
               />
             </div>
             <div class="mb-3">
@@ -30,35 +36,42 @@
               />
             </div>
             <div class="mb-3">
-              <label for="problem-description" class="form-label">
-                Description
+              <label for="message-description" class="form-label">
+                Message
               </label>
               <input
                 type="text"
                 class="form-control"
-                id="problem-description"
-                name="problem-description"
-                placeholder="Description"
+                id="message-description"
+                name="message-description"
+                placeholder="Message"
               />
             </div>
             <button
               id="view-button"
               type="submit"
               class="btn btn-dark w-50"
-              onclick="handlenavigateTo(event, 'viewrequest')"
+              onclick="handlenavigateTo(event, 'updatemessage')"
             >
-              VIEW
+              EDIT
             </button>
+
+            <br />
+            <br />
+            <div class="notes">
+              <p>You can update a message from here, good idea?</p>
+            </div>
+            <br />
             <br />
             <br />
             <div class="mb-3">
-              <label for="request-number" class="form-label">Request ID</label>
+              <label for="message-number" class="form-label">Message ID</label>
               <input
                 type="text"
                 class="form-control"
-                id="request-number"
-                name="request-number"
-                placeholder="Request Number"
+                id="message-number"
+                name="message-number"
+                placeholder="Message Number"
               />
             </div>
             <div class="mb-3">
@@ -72,26 +85,35 @@
               />
             </div>
             <div class="mb-3">
-              <label for="problem-description" class="form-label">
-                Description
+              <label for="message-description" class="form-label">
+                Message
               </label>
               <input
                 type="text"
                 class="form-control"
-                id="problem-description"
-                name="problem-description"
-                placeholder="Description"
+                id="message-description"
+                name="message-description"
+                placeholder="Message"
               />
             </div>
-            <button
-              id="view-button"
-              type="submit"
-              class="btn btn-dark w-50"
-              onclick="handlenavigateTo(event, 'viewrequest')"
-            >
-              VIEW
-            </button>
           </form>
+          <br />
+          <br />
+
+          <button
+            id="view-button"
+            type="submit"
+            class="btn btn-dark w-50"
+            onclick="handlenavigateTo(event, 'clientlanding')"
+          >
+            DONE
+          </button>
+          <br />
+          <br />
+          <div class="notes">
+            <p>Client can only update own messages</p>
+            <p>Client can only create new messages on the edit request</p>
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head id="head"></head>
+  <body>
+    <div id="header"></div>
+    <div id="navbar"></div>
+    <div id="view-labour-screen" class="container mt-5 content">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h3 class="text-center">View Labour</h3>
+          <form id="view-labour-screen-form">
+            <div class="mb-3">
+              <label for="labour-number" class="form-label">Labour ID</label>
+              <input
+                type="text"
+                class="form-control"
+                id="labour-number"
+                name="labour-number"
+                placeholder="Labour ID"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date"
+                name="date"
+                placeholder="Date"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="labour-description" class="form-label">
+                Labour Detail
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="labour-description"
+                name="labour-description"
+                placeholder="Labour"
+              />
+            </div>
+          </form>
+          <br />
+          <br />
+
+          <button
+            id="view-button"
+            type="submit"
+            class="btn btn-dark w-50"
+            onclick="handlenavigateTo(event, 'viewrequest')"
+          >
+            DONE
+          </button>
+          <br />
+          <br />
+          <div class="notes">
+            <p>
+              This needs to be built out with labour type, hours, technician
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer"></div>
+    <script>
+      // Load reusable components
+      async function loadComponents() {
+        document.getElementById("head").innerHTML = await (
+          await fetch("core/head.html")
+        ).text();
+        document.getElementById("navbar").innerHTML = await (
+          await fetch("core/navbar.html")
+        ).text();
+        document.getElementById("footer").innerHTML = await (
+          await fetch("core/footer.html")
+        ).text();
+      }
+      loadComponents();
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

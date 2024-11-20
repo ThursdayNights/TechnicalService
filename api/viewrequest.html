@@ -8,8 +8,32 @@
       <div class="row justify-content-center">
         <div class="col-md-6">
           <h3 class="text-center">View Request</h3>
-          <form id="new-request-screen-form">
+          <br />
+          <br />
+          <button
+            id="request-button"
+            type="submit"
+            class="btn btn-dark w-50"
+            onclick="handlenavigateTo(event, 'viewlabour')"
+          >
+            VIEW LABOUR
+          </button>
+          <br />
+          <br />
+          <button
+            id="request-button"
+            type="submit"
+            class="btn btn-dark w-50"
+            onclick="handlenavigateTo(event, 'viewparts')"
+          >
+            VIEW PARTS
+          </button>
+          <br />
+          <br />
+          <br />
+          <form id="view-request-screen-form">
             <div class="mb-3">
+              <label for="request-number" class="form-label">Request ID</label>
               <input
                 type="text"
                 class="form-control"
@@ -19,21 +43,39 @@
               />
             </div>
             <div class="mb-3">
-              <select class="form-control" id="service-type">
-                <option value="" disabled selected>Select Service Type</option>
-              </select>
+              <label for="service-type" class="form-label">Service Type</label>
+              <input
+                type="text"
+                class="form-control"
+                id="service-type"
+                name="service-type"
+                placeholder="Service Type"
+              />
             </div>
             <div class="mb-3">
-              <select class="form-control" id="technician">
-                <option value="" disabled selected>Select Technician</option>
-              </select>
+              <label for="technician" class="form-label">Technician</label>
+              <input
+                type="text"
+                class="form-control"
+                id="technician"
+                name="technician"
+                placeholder="Technician"
+              />
             </div>
             <div class="mb-3">
-              <select class="form-control" id="equipment">
-                <option value="" disabled selected>Select Equipment</option>
-              </select>
+              <label for="equipment" class="form-label">Equipment</label>
+              <input
+                type="text"
+                class="form-control"
+                id="equipment"
+                name="equipment"
+                placeholder="Equipment"
+              />
             </div>
             <div class="mb-3">
+              <label for="serial-number" class="form-label">
+                Serial Number
+              </label>
               <input
                 type="text"
                 class="form-control"
@@ -43,6 +85,9 @@
               />
             </div>
             <div class="mb-3">
+              <label for="problem-description" class="form-label">
+                Description
+              </label>
               <input
                 type="text"
                 class="form-control"
@@ -52,6 +97,7 @@
               />
             </div>
             <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
               <input
                 type="date"
                 class="form-control"
@@ -62,6 +108,7 @@
             </div>
 
             <div class="mb-3">
+              <label for="time" class="form-label">Time</label>
               <input
                 type="text"
                 class="form-control"
@@ -70,15 +117,19 @@
                 placeholder="Time"
               />
             </div>
-            <button
-              id="request-button"
-              type="submit"
-              class="btn btn-dark w-50"
-              onclick="handlenavigateTo(event, 'clientlanding')"
-            >
-              DONE
-            </button>
           </form>
+          <br />
+          <br />
+          <button
+            id="request-button"
+            type="submit"
+            class="btn btn-dark w-50"
+            onclick="handlenavigateTo(event, 'viewmessages')"
+          >
+            VIEW MESSAGES
+          </button>
+          <br />
+          <br />
         </div>
       </div>
     </div>

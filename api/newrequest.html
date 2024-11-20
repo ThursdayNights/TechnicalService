@@ -10,6 +10,7 @@
           <h3 class="text-center">New Request</h3>
           <form id="new-request-screen-form">
             <div class="mb-3">
+              <label for="request-number" class="form-label">Request ID</label>
               <input
                 type="text"
                 class="form-control"
@@ -19,21 +20,27 @@
               />
             </div>
             <div class="mb-3">
+              <label for="service-type" class="form-label">Service Type</label>
               <select class="form-control" id="service-type">
                 <option value="" disabled selected>Select Service Type</option>
               </select>
             </div>
             <div class="mb-3">
+              <label for="technician" class="form-label">Technician</label>
               <select class="form-control" id="technician">
                 <option value="" disabled selected>Select Technician</option>
               </select>
             </div>
             <div class="mb-3">
+              <label for="equipment" class="form-label">Equipment</label>
               <select class="form-control" id="equipment">
                 <option value="" disabled selected>Select Equipment</option>
               </select>
             </div>
             <div class="mb-3">
+              <label for="serial-number" class="form-label">
+                Serial Number
+              </label>
               <input
                 type="text"
                 class="form-control"
@@ -43,6 +50,9 @@
               />
             </div>
             <div class="mb-3">
+              <label for="problem-description" class="form-label">
+                Description
+              </label>
               <input
                 type="text"
                 class="form-control"
@@ -52,6 +62,7 @@
               />
             </div>
             <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
               <input
                 type="date"
                 class="form-control"
@@ -62,6 +73,7 @@
             </div>
 
             <div class="mb-3">
+              <label for="time" class="form-label">Time</label>
               <input
                 type="text"
                 class="form-control"
@@ -79,6 +91,26 @@
               REQUEST SERVICE
             </button>
           </form>
+          <br />
+          <div class="notes">
+            <p>Dif to provide API call for populating dropdowns:</p>
+            <p>- Service Type</p>
+            <p>- Technician</p>
+            <p>- Equipment</p>
+          </div>
+          <br />
+          <div class="notes">
+            <p>
+              Vicus and Dif to discuss do we complete CLient Journey first or
+              build the Hestico Admin panel for adding users and dropdown data?
+            </p>
+          </div>
+          <div class="notes">
+            <p>
+              Vicus and Dif to discuss how we deal hours. Any hour out of 24?
+              When do we add availability to the website?
+            </p>
+          </div>
         </div>
       </div>
     </div>
