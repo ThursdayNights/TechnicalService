@@ -23,8 +23,6 @@ function handlenavigateTo(event, page) {
 // buttonhandlers
 function handlelogin(event) {
   event.preventDefault();
-  alert("Login button clicked");
-  console.log("Login button clicked");
   navigateTo("register");
 }
 
@@ -52,7 +50,7 @@ async function handleregister(event) {
 
   console.log("Payload:", JSON.stringify(payload));
   let message = ""; // Declare message variable outside the try block
-
+  document.getElementById("loading-bar").style.display = "block";
   try {
     const response = await fetch(
       "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/register/",
@@ -85,6 +83,7 @@ async function handleregister(event) {
 
   globalmessage = message; // Update globalmessage before navigating
   console.log("Global message:", globalmessage);
-
-  // navigateTo("registerlanding");
+  // Hide the loading bar
+  document.getElementById("loading-bar").style.display = "none";
+  navigateTo("home");
 }

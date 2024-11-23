@@ -1,7 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head id="head"></head>
+  <head id="head">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <style>
+      /* Add some basic styles for the loading bar */
+      #loading-bar {
+        display: none;
+        width: 100%;
+        height: 4px;
+        background-color: #007bff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        animation: loading 2s linear infinite;
+      }
+
+      @keyframes loading {
+        0% {
+          width: 0;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
   <body>
+    <div id="loading-bar"></div>
     <div id="header"></div>
     <div id="navbar"></div>
 
@@ -9,7 +37,7 @@
       <div class="row justify-content-center">
         <div class="col-md-6">
           <h3 class="text-center">Register</h3>
-          <form>
+          <form id="register-form">
             <div class="mb-3">
               <label for="first_name" class="form-label">First Name</label>
               <input
@@ -33,7 +61,7 @@
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input
-                type="text"
+                type="email"
                 class="form-control"
                 id="email"
                 name="email"
@@ -53,13 +81,27 @@
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <input
-                type="text"
+                type="password"
                 class="form-control"
                 id="password"
                 name="password"
                 placeholder="Password"
               />
             </div>
+
+            <div class="mb-3">
+              <label for="confirmpassword" class="form-label">
+                Confirm Password
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="confirmpassword"
+                name="confirmpassword"
+                placeholder="Confirm Password"
+              />
+            </div>
+
             <button
               type="submit"
               class="btn btn-dark w-50"
@@ -70,6 +112,9 @@
           </form>
           <br />
           <div class="notes">Vicus to enable api call on netlify website.</div>
+          <br />
+          <br />
+          <div class="notes">Vicus to enable Loading Bar</div>
           <br />
           <br />
           <div id="response"></div>
