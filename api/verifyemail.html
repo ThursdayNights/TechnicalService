@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head id="head"></head>
+  <body>
+    <div id="header"></div>
+    <div id="navbar"></div>
+    <div id="login-screen" class="container mt-5 content">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h3 class="text-center">Register</h3>
+          <br />
+          <p>Please provide an email you would like to register with</p>
+          <form>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="text"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Email"
+              />
+            </div>
+            <div class="notes">Press this if linked to a company</div>
+            <button
+              type="submit"
+              class="btn btn-dark w-50"
+              onclick="handlelogin(event)"
+            >
+              NEXT
+            </button>
+            <br />
+            <br />
+            <div class="notes">
+              Press this if linked not linked to a company
+            </div>
+            <button
+              type="submit"
+              class="btn btn-dark w-50"
+              onclick="handlelogin2(event)"
+            >
+              NEXT
+            </button>
+          </form>
+
+          <br />
+          <div class="notes">
+            We need a public API to see if the email is a user
+          </div>
+          <br />
+        </div>
+      </div>
+    </div>
+    <div id="footer"></div>
+    <script>
+      // Load reusable components
+      async function loadComponents() {
+        document.getElementById("head").innerHTML = await (
+          await fetch("core/head.html")
+        ).text();
+        document.getElementById("navbar").innerHTML = await (
+          await fetch("core/navbar.html")
+        ).text();
+        document.getElementById("footer").innerHTML = await (
+          await fetch("core/footer.html")
+        ).text();
+      }
+      loadComponents();
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

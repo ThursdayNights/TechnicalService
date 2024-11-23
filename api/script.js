@@ -1,3 +1,13 @@
+// Conole messsaging system
+var globalmessage = "";
+window.addEventListener("load", function () {
+  console.log(window.location.href);
+  console.log("globalmessage:", globalmessage);
+});
+
+var globalemail = "";
+
+// navigation
 function navigateTo(page) {
   if (page) {
     window.location.href = `${page}.html`;
@@ -5,81 +15,76 @@ function navigateTo(page) {
     console.error("Invalid page name");
   }
 }
-
 function handlenavigateTo(event, page) {
   event.preventDefault();
-
   navigateTo(page);
 }
 
 // buttonhandlers
-function handleregister(event) {
-  event.preventDefault();
-  navigateTo("registerlanding");
-}
 function handlelogin(event) {
   event.preventDefault();
-  navigateTo("clientlanding");
+  alert("Login button clicked");
+  console.log("Login button clicked");
+  navigateTo("register");
 }
 
-// datahandlers
-// async function handleregister(event) {
-//   event.preventDefault();
-//   const password = document.getElementById("password").value;
-//   const first_name = document.getElementById("first_name").value;
-//   const last_name = document.getElementById("last_name").value;
-//   const email = document.getElementById("email").value;
+// Register handler
+async function handleregister(event) {
+  event.preventDefault();
+  const password = document.getElementById("password").value;
+  const first_name = document.getElementById("first_name").value;
+  const last_name = document.getElementById("last_name").value;
+  const email = document.getElementById("email").value;
+  const phone_number = document.getElementById("mobile").value;
 
-//   const payload = {
-//     username: email,
-//     password,
-//     first_name,
-//     last_name,
-//     email,
-//     role: "user",
-//   };
+  const supplier_key = "h3st1c0";
 
-//   const responseElement = document.getElementById("response");
-//   responseElement.innerHTML = "<p>Sending request...</p>";
+  const payload = {
+    username: email,
+    password,
+    first_name,
+    last_name,
+    email,
+    role: "user",
+    phone_number,
+    supplier_key,
+  };
 
-//   console.log(JSON.stringify(payload));
-//   try {
-//     // const result = await response.json();
-//     const response = await fetch(
-//       "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/register/",
-//       {
-//         method: "POST",
-//         headers: {
-//           accept: "application/json",
-//           "Content-Type": "application/json",
-//           "X-CSRFTOKEN":
-//             "UV9VKKgfS13D4cHMgUeAhoGrD2eijGIvUV6L8QUa9KMXPfVZPDC6bmxqFTvIHuwT",
-//         },
-//         body: JSON.stringify(payload),
-//       }
-//     );
+  console.log("Payload:", JSON.stringify(payload));
+  let message = ""; // Declare message variable outside the try block
 
-//     const result = await response.json();
+  try {
+    const response = await fetch(
+      "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/register/",
+      {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+          "X-CSRFTOKEN":
+            "UV9VKKgfS13D4cHMgUeAhoGrD2eijGIvUV6L8QUa9KMXPfVZPDC6bmxqFTvIHuwT",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
 
-//     if (response.ok) {
-//       responseElement.innerHTML = `
-//       <h3>Registration Successful</h3>
-//       <p><strong>Username:</strong> ${result.username}</p>
-//       <p><strong>Email:</strong> ${result.email}</p>
-//       <p><strong>First Name:</strong> ${result.first_name}</p>
-//       <p><strong>Last Name:</strong> ${result.last_name}</p>
-//     `;
-//     } else {
-//       responseElement.innerHTML = `
-//       <h3 class="error">Registration Failed</h3>
-//       <p><strong>Status:</strong> ${response.status}</p>
-//       <p><strong>Message:</strong> ${result.detail || "An error occurred"}</p>
-//     `;
-//     }
-//   } catch (error) {
-//     responseElement.innerHTML = `
-//     <h3 class="error">Error</h3>
-//     <p>${error.message}</p>
-//   `;
-//   }
-// }
+    console.log("Response status:", response.status);
+    const result = await response.json();
+
+    if (response.ok) {
+      console.log("Registration successful:", result);
+      message = "Registration successful";
+    } else {
+      console.log("Registration failed:", result);
+      message = "Registration failed: " + (result.message || "Unknown error");
+    }
+  } catch (error) {
+    console.log("Fetch error (Server Side):", error);
+    message = "Fetch error (Server Side): " + error.message;
+  }
+
+  globalmessage = message; // Update globalmessage before navigating
+  console.log("Global message:", globalmessage);
+
+  // navigateTo("registerlanding");
+}
