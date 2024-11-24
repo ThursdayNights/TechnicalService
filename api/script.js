@@ -23,11 +23,21 @@ function handlenavigateTo(event, page) {
 // buttonhandlers
 function handlelogin(event) {
   event.preventDefault();
-  navigateTo("register");
+  navigateTo("home");
+}
+
+function handleregistercompany(event) {
+  event.preventDefault();
+  navigateTo("confirmcompany");
+}
+
+function handleregister(event) {
+  event.preventDefault();
+  navigateTo("confirmuser");
 }
 
 // Register handler
-async function handleregister(event) {
+async function handleregister_disabled(event) {
   event.preventDefault();
   const password = document.getElementById("password").value;
   const first_name = document.getElementById("first_name").value;
