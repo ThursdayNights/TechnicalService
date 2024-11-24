@@ -85,5 +85,5 @@ async function handleregister(event) {
   console.log("Global message:", globalmessage);
   // Hide the loading bar
   document.getElementById("loading-bar").style.display = "none";
-  navigateTo("home");
+  navigateTo("confirmuser");
 }

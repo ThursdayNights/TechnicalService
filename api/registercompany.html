@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head id="head">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register Company</title>
+    <style>
+      /* Add some basic styles for the loading bar */
+      #loading-bar {
+        display: none;
+        width: 100%;
+        height: 4px;
+        background-color: #007bff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        animation: loading 2s linear infinite;
+      }
+
+      @keyframes loading {
+        0% {
+          width: 0;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loading-bar"></div>
+    <div id="header"></div>
+    <div id="navbar"></div>
+
+    <div id="register-screen" class="container mt-5 content">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h3 class="text-center">Register</h3>
+          <form id="register-form">
+            <div class="mb-3">
+              <label for="company_name" class="form-label">Company Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="company_name"
+                name="company_name"
+                placeholder="Company Name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="hestico_account_no" class="form-label">
+                Hestico Account No - optional
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="hestico_account_no"
+                name="hestico_account_no"
+                placeholder="Hestico Account No"
+              />
+              <br />     <br />
+
+            <button
+              type="submit"
+              class="btn btn-dark w-50"
+              onclick="navigateTo('home')"
+            >
+              REGISTER COMPANY
+            </button>
+            <br />
+          </form>
+          <br />
+          <br />
+          <div class="notes">Vicus to enable api call on netlify website.</div>
+          <br />
+          <br />
+          <div class="notes">Vicus to enable Loading Bar</div>
+          <br />
+          <br />
+          <div id="response"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer"></div>
+    <script>
+      // Load reusable components
+      async function loadComponents() {
+        document.getElementById("head").innerHTML = await (
+          await fetch("core/head.html")
+        ).text();
+        document.getElementById("navbar").innerHTML = await (
+          await fetch("core/navbar.html")
+        ).text();
+        document.getElementById("footer").innerHTML = await (
+          await fetch("core/footer.html")
+        ).text();
+      }
+      loadComponents();
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
