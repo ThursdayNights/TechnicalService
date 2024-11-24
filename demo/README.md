@@ -1,2 +1,0 @@
-# TechnicalService
-Techical Service Company
