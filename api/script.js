@@ -31,14 +31,15 @@ function handleregistercompany(event) {
   navigateTo("confirmcompany");
 }
 
-function handleregister(event) {
+function handleregister_disabled(event) {
   event.preventDefault();
   navigateTo("confirmuser");
 }
 
 // Register handler
-async function handleregister_disabled(event) {
+async function handleregister(event) {
   event.preventDefault();
+  alert("Registering user...");
   const password = document.getElementById("password").value;
   const first_name = document.getElementById("first_name").value;
   const last_name = document.getElementById("last_name").value;
@@ -46,7 +47,6 @@ async function handleregister_disabled(event) {
   const phone_number = document.getElementById("mobile").value;
 
   const supplier_key = "h3st1c0";
-
   const payload = {
     username: email,
     password,
@@ -76,7 +76,11 @@ async function handleregister_disabled(event) {
       }
     );
 
-    console.log("Response status:", response.status);
+    const resp_status = response.status;
+    var resp_statustext = response.statusText;
+    console.log("Hello Created Var");
+    console.log("Response status here....:", resp_status);
+    console.log("Response statusText:", resp_statustext);
     const result = await response.json();
 
     if (response.ok) {
@@ -95,5 +99,12 @@ async function handleregister_disabled(event) {
   console.log("Global message:", globalmessage);
   // Hide the loading bar
   document.getElementById("loading-bar").style.display = "none";
-  navigateTo("confirmuser");
+  alert(message);
+  alert("Navigating to confirmuser...");
+  alert(response.status);
+  if (resp_statustext == "Created") {
+    navigateTo("confirmuser");
+  } else {
+    alert(message);
+  }
 }
