@@ -1,15 +1,12 @@
 const fetch = require("node-fetch");
 
 exports.handler = async (event) => {
-  // Your Azure API endpoint
   const API_URL =
     "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/register/";
 
-  // Parse the request body from the event
   const payload = JSON.parse(event.body);
 
   try {
-    // Forward the request to Azure
     const response = await fetch(API_URL, {
       method: "POST",
       headers: {
@@ -21,10 +18,8 @@ exports.handler = async (event) => {
       body: JSON.stringify(payload),
     });
 
-    // Get the response data from Azure
     const responseData = await response.json();
 
-    // Return the response to the frontend
     return {
       statusCode: response.status,
       body: JSON.stringify(responseData),
