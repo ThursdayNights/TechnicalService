@@ -1,8 +1,21 @@
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
-exports.handler = async (event) => {
-  const API_URL =
+export const handler = async (event) => {
+  console.log("Event:", JSON.stringify(event, null, 2)); // Log the event object
+
+  let API_URL;
+  // if (event.path.includes("register")) {
+  API_URL =
     "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/register/";
+  // } else if (event.path.includes("login")) {
+  //   API_URL =
+  //     "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/login/";
+  // } else {
+  //   return {
+  //     statusCode: 400,
+  //     body: JSON.stringify({ message: "Invalid API path" }),
+  //   };
+  // }
 
   const payload = JSON.parse(event.body);
 
@@ -18,7 +31,15 @@ exports.handler = async (event) => {
       body: JSON.stringify(payload),
     });
 
-    const responseData = await response.json();
+    let responseData;
+    try {
+      responseData = await response.json();
+    } catch (error) {
+      responseData = {
+        message: "Error parsing JSON response",
+        error: error.message,
+      };
+    }
 
     return {
       statusCode: response.status,
