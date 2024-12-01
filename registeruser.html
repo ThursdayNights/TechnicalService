@@ -70,6 +70,18 @@
             </div>
             <div class="mb-3">
               <label for="mobile" class="form-label">Mobile Number</label>
+              <script>
+                document
+                  .getElementById("mobile")
+                  .addEventListener("input", function (e) {
+                    let value = e.target.value;
+                    if (value.startsWith("0")) {
+                      e.target.value = "+27" + value.slice(1);
+                    } else if (!value.startsWith("+27")) {
+                      e.target.value = "+27" + value;
+                    }
+                  });
+              </script>
               <input
                 type="text"
                 class="form-control"

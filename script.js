@@ -20,8 +20,6 @@ function handlenavigateTo(event, page) {
   navigateTo(page);
 }
 
-// buttonhandlers
-// Register handler
 async function handleregister(event) {
   // print event.path to console
   event.preventDefault();
@@ -46,37 +44,18 @@ async function handleregister(event) {
 
   console.log("Payload:", JSON.stringify(payload));
 
-  let message = ""; // Declare message variable outside the try block
-  document.getElementById("loading-bar").style.display = "block";
   try {
-    // Send the request to the Netlify Function instead of Azure
-    const response = await fetch("/.netlify/functions/azureProxy/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
+    // Send the request to the callapi Function
+    const response = await callapi({
+      path: "register",
+      payload: JSON.stringify(payload),
     });
-
-    const resp_status = response.status;
-    const resp_statustext = response.statusText;
-    console.log("Response status here....:", resp_status);
-
-    const responseData = await response.json();
-    message = responseData.message || "Registration successful";
   } catch (error) {
-    console.error("Registration failed:", error);
-    message = "Registration failed: " + error.message;
+    console.error("Error during registration:", error);
+  } finally {
+    document.getElementById("loading-bar").style.display = "none";
   }
-
-  globalmessage = message; // Update globalmessage before navigating
-  console.log("Global message:", globalmessage);
-  document.getElementById("loading-bar").style.display = "none"; // Hide the loading bar
-  alert(message);
-
-  if (message === "Registration successful") {
-    navigateTo("home");
-  }
+  return payload;
 }
 
 async function handlelogin(event) {
@@ -130,10 +109,6 @@ async function handlelogin(event) {
   globalmessage = message; // Update globalmessage before navigating
   console.log("Global message:", globalmessage);
   alert(message);
-
-  // if (message === "Log In successful") {
-  //   navigateTo("home");
-  // }
 }
 
 function handleregistercompany(event) {
@@ -141,64 +116,54 @@ function handleregistercompany(event) {
   navigateTo("confirmcompany");
 }
 
-// const fetch = (...args) =>
-//   import("node-fetch").then(({ default: fetch }) => fetch(...args));
+async function callapi({ path, payload }) {
+  console.log("Path:", path);
+  console.log("Payload:", payload);
 
-// export const handler = async (event) => {
-//   console.log("Event path:", event.path); // Log the event path
+  let apiEndpoint;
+  switch (path) {
+    case "register":
+      apiEndpoint =
+        "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/register/";
+      break;
+    case "login":
+      apiEndpoint =
+        "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/login/";
+      break;
+    default:
+      throw new Error("Invalid API path");
+  }
 
-//   let API_URL;
-//   if (event.path.includes("register")) {
-//     API_URL =
-//       "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/register/";
-//   } else if (event.path.includes("login")) {
-//     API_URL =
-//       "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/login/";
-//   } else {
-//     return {
-//       statusCode: 400,
-//       body: JSON.stringify({ message: "Invalid API path" }),
-//     };
-//   }
-
-//   const payload = JSON.parse(event.body);
-
-//   try {
-//     const response = await fetch(API_URL, {
-//       method: "POST",
-//       headers: {
-//         accept: "application/json",
-//         "Content-Type": "application/json",
-//         "X-CSRFTOKEN":
-//           "UV9VKKgfS13D4cHMgUeAhoGrD2eijGIvUV6L8QUa9KMXPfVZPDC6bmxqFTvIHuwT",
-//       },
-//       body: JSON.stringify(payload),
-//     });
-
-//     let responseData;
-//     const responseText = await response.text();
-//     try {
-//       responseData = JSON.parse(responseText);
-//     } catch (error) {
-//       responseData = {
-//         message: "Error parsing JSON response",
-//         error: error.message,
-//         rawResponse: responseText,
-//       };
-//     }
-
-//     return {
-//       statusCode: response.status,
-//       body: JSON.stringify(responseData),
-//     };
-//   } catch (error) {
-//     console.error("Error connecting to Azure API:", error);
-//     return {
-//       statusCode: 500,
-//       body: JSON.stringify({
-//         message: "Error connecting to Azure API",
-//         error: error.message,
-//       }),
-//     };
-//   }
-// };
+  await fetch(apiEndpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: payload,
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error("Server Error: " + response.status + " - " + errorText);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(JSON.stringify(data, null, 2));
+    })
+    .catch((error) => {
+      console.error("Error:", error); // Added line to show console errors
+      let errorMessage = "An error occurred: ";
+      if (error.message.includes("NetworkError")) {
+        errorMessage +=
+          "Network error. Please check if the server is running and accessible.";
+      } else if (error.message.includes("Failed to fetch")) {
+        errorMessage +=
+          "Unable to connect to the server. Please ensure the URL is correct and the server is up.";
+      } else {
+        errorMessage += error.message;
+      }
+      console.log(errorMessage);
+    });
+}
