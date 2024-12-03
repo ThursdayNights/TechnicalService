@@ -4,3 +4,7 @@
 4 Run the Netlify development server => netlify dev
 
 5 You can access the function locally => http://localhost:8888/.netlify/functions/azureProxy
+
+Add some validation to each field
+figure out how to catch server message and display them
+sort out phone number problem

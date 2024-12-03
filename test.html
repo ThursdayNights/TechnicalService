@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Register Test</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.7.0/build/css/intlTelInput.css"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h2 {
+        color: #4caf50;
+      }
+
+      .radio-group {
+        margin-bottom: 20px;
+      }
+
+      .radio-group label {
+        margin-right: 15px;
+      }
+
+      form {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+      }
+
+      label {
+        font-weight: 700;
+        margin-bottom: 5px;
+        display: block;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="tel"] {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      #response {
+        margin-top: 20px;
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        word-wrap: break-word;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Register User</h2>
+
+    <div class="radio-group">
+      <label>
+        <input
+          type="radio"
+          name="apiEndpoint"
+          value="http://127.0.0.1:8000/api/v1/register/"
+          checked
+        />
+        Local Server
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="apiEndpoint"
+          value="https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/register/"
+        />
+        Azure Server
+      </label>
+    </div>
+
+    <form id="registerForm">
+      <label for="first_name">First Name:</label>
+      <input
+        type="text"
+        id="first_name"
+        name="first_name"
+        value="John"
+        required
+      />
+
+      <label for="last_name">Last Name:</label>
+      <input
+        type="text"
+        id="last_name"
+        name="last_name"
+        value="Galt"
+        required
+      />
+
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        value="john.galt@example.com"
+        required
+      />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        value="you will never guess this password"
+        required
+      />
+
+      <label for="phone_number">Phone Number:</label>
+      <input type="tel" id="phone_number" name="phone_number" required />
+
+      <button type="button" onclick="registerUser()">Register</button>
+    </form>
+
+    <p id="response"></p>
+
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.7.0/build/js/intlTelInput.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const phoneInputField = document.querySelector("#phone_number");
+        const phoneInput = window.intlTelInput(phoneInputField, {
+          initialCountry: "auto",
+          geoIpLookup: function (callback) {
+            fetch("https://ipinfo.io/json")
+              .then((response) => response.json())
+              .then((data) => callback(data.country))
+              .catch(() => callback("US"));
+          },
+          utilsScript:
+            "https://cdn.jsdelivr.net/npm/intl-tel-input@24.7.0/build/js/utils.js",
+        });
+
+        phoneInputField.addEventListener("blur", function () {
+          let phoneNumber = phoneInputField.value.trim();
+          const countryCode = phoneInput.getSelectedCountryData().dialCode;
+
+          if (phoneNumber.startsWith("0")) {
+            phoneNumber = phoneNumber.substring(1);
+            phoneInputField.value = `+${countryCode}${phoneNumber}`;
+          } else if (!phoneNumber.startsWith(`+${countryCode}`)) {
+            phoneInputField.value = `+${countryCode}${phoneNumber}`;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -35,7 +35,10 @@ async function handleregister(event) {
   const first_name = document.getElementById("first_name").value;
   const last_name = document.getElementById("last_name").value;
   const email = document.getElementById("email").value;
-  const phone_number = document.getElementById("mobile").value;
+  let phone_number = document.getElementById("mobile").value;
+  if (phone_number.length === 10) {
+    phone_number = "+27" + phone_number.slice(1);
+  }
 
   const supplier_key = "h3st1c0";
   const payload = {
@@ -84,7 +87,17 @@ function validateForm() {
   if (!email || !validateEmail(email))
     errors.push("A valid email is required.");
   if (!mobile) errors.push("Mobile number is required.");
-  if (!password) errors.push("Password is required.");
+  if (!/^\+?\d{10,11}$/.test(mobile))
+    errors.push(
+      "Mobile number must be 10 digits or 11 digits preceded by a +."
+    );
+  if (!password) {
+    errors.push("Password is required.");
+  } else if (password.length < 8) {
+    errors.push("Password must be at least 8 characters long.");
+  } else if (!/\d/.test(password) || !/[a-zA-Z]/.test(password)) {
+    errors.push("Password must contain both numbers and letters.");
+  }
   if (password !== confirmPassword) errors.push("Passwords do not match.");
 
   const errorContainer = document.getElementById("form-errors");
