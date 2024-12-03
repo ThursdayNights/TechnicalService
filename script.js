@@ -22,9 +22,49 @@ function handlenavigateTo(event, page) {
   navigateTo(page);
 }
 
+function extractErrorMessage(error) {
+  if (typeof error === "string") {
+    return error; // Return plain string errors
+  }
+
+  if (typeof error === "object" && error !== null) {
+    // Check if the error object has specific keys like "message" or "details"
+    if (error.message) return error.message;
+    if (error.error) return error.error; // Adjust based on your API structure
+    if (typeof error === "object") {
+      return JSON.stringify(error, null, 2); // Fallback: stringify the object
+    }
+  }
+
+  return "An unknown error occurred"; // Default error message
+}
+
+function parseErrorMessage(error) {
+  try {
+    // Parse the error message string into a JavaScript object
+    const errorObject = JSON.parse(error.message);
+
+    // Check if the "password" key exists
+    if (errorObject.password) {
+      return "This password is too common.";
+    }
+    // Check if the "email" key exists
+    if (errorObject.email) {
+      return "This email is already registered";
+    }
+  } catch (e) {
+    // If parsing fails, treat it as a plain message
+    console.error("Error parsing message:", e);
+  }
+
+  // Return the original error message if no "password" key is found
+  return error.message;
+}
+
 // Handle registration
 async function handleregister(event) {
   event.preventDefault();
+  const errors = [];
 
   // Run form validation
   if (!validateForm()) {
@@ -57,18 +97,19 @@ async function handleregister(event) {
       path: "register",
       payload: JSON.stringify(payload),
     });
-    document.getElementById("response").innerText = JSON.stringify(
-      response,
-      null,
-      2
-    );
-    console.log("Registration successful:", response);
+
+    if (!response.success) {
+      const errorMessage = extractErrorMessage(response.message);
+      throw new Error(errorMessage);
+    }
+
+    // Handle success (e.g., navigate or show success message)
+    document.getElementById("response").innerText = "Registration successful!";
   } catch (error) {
     console.error("Error during registration:", error);
-    document.getElementById("response").innerText =
-      "Error during registration: " + error.message;
-  } finally {
-    document.getElementById("loading-bar").style.display = "none";
+    const clienterror = parseErrorMessage(error);
+    errors.push("System Error: " + clienterror);
+    displayerrors(errors);
   }
 }
 
@@ -100,18 +141,20 @@ function validateForm() {
   }
   if (password !== confirmPassword) errors.push("Passwords do not match.");
 
-  const errorContainer = document.getElementById("form-errors");
-  if (errorContainer) {
-    if (errors.length > 0) {
-      errorContainer.innerHTML = errors.join("<br>");
-      return false;
-    }
-    errorContainer.innerHTML = "";
-  } else {
-    console.error("Error container not found in DOM.");
-  }
+  displayerrors(errors);
+  if (errors.length > 0) return false;
 
   return true;
+}
+
+function displayerrors(errors) {
+  const errorList = document.getElementById("form-errors");
+  errorList.innerHTML = "";
+  errors.forEach((error) => {
+    const listItem = document.createElement("li");
+    listItem.innerText = error;
+    errorList.appendChild(listItem);
+  });
 }
 
 // Validate email format
@@ -122,36 +165,51 @@ function validateEmail(email) {
 
 // Call API
 async function callapi({ path, payload }) {
-  console.log("Path:", path);
-  console.log("Payload:", payload);
-
-  let apiEndpoint;
-  switch (path) {
-    case "register":
-      apiEndpoint =
-        "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/register/";
-      break;
-    default:
-      throw new Error("Invalid API path");
+  const endpoints = {
+    register:
+      "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/register/",
+    login:
+      "https://app-booking-test-zanorth-001-cfdwfmcjfgeuafdg.southafricanorth-01.azurewebsites.net/api/v1/login/",
+  };
+  const apiEndpoint = endpoints[path];
+  if (!apiEndpoint) {
+    throw new Error("Invalid API path");
   }
+  const methods = {
+    register: "POST",
+    login: "POST",
+  };
+  const method = methods[path];
 
-  return await fetch(apiEndpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: payload,
-  })
-    .then(async (response) => {
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error("Server Error: " + response.status + " - " + errorText);
-      }
-      return response.json();
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      throw error;
+  try {
+    const response = await fetch(apiEndpoint, {
+      method: method,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: payload,
     });
+
+    const responseBody = await response.json();
+
+    if (!response.ok) {
+      return {
+        success: false,
+        status: response.status,
+        message: responseBody,
+      };
+    }
+
+    return {
+      success: true,
+      data: responseBody,
+    };
+  } catch (error) {
+    console.error("API Call Error:", error);
+    return {
+      success: false,
+      message: error.message,
+    };
+  }
 }
