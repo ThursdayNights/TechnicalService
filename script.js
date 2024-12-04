@@ -103,6 +103,7 @@ async function handleregister(event) {
       throw new Error(errorMessage);
     }
 
+    console.log("API Response Data:", response);
     // Handle success (e.g., navigate or show success message)
     document.getElementById("response").innerText = "Registration successful!";
   } catch (error) {
@@ -110,6 +111,36 @@ async function handleregister(event) {
     const clienterror = parseErrorMessage(error);
     errors.push("System Error: " + clienterror);
     displayerrors(errors);
+  }
+}
+
+// Handle login
+async function handleregister(event) {
+  event.preventDefault();
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const payload = {
+    email,
+    password,
+  };
+
+  try {
+    const response = await callapi({
+      path: "login",
+      payload: JSON.stringify(payload),
+    });
+
+    if (!response.success) {
+      const errorMessage = extractErrorMessage(response.message);
+      throw new Error(errorMessage);
+    }
+
+    console.log("API Response Data:", response);
+    // Handle success (e.g., navigate or show success message)
+    document.getElementById("response").innerText = "Registration successful!";
+  } catch (error) {
+    console.error("Error during registration:", error);
+    const clienterror = parseErrorMessage(error);
   }
 }
 
