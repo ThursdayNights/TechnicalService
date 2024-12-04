@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar View</title>
+    <link rel="stylesheet" href="calenderstyles.css" />
+  </head>
+  <body>
+    <div class="calendar">
+      <div class="calendar-header">
+        <div class="nav-buttons">
+          <button class="prev">❮</button>
+          <button class="next">❯</button>
+        </div>
+        <div class="current-date">
+          <h2>Tuesday, 01 November 2022</h2>
+        </div>
+        <div class="workspace-dropdown">
+          <select>
+            <option>All Workspaces</option>
+            <option>Workspace 1</option>
+            <option>Workspace 2</option>
+          </select>
+        </div>
+      </div>
+      <div class="calendar-body">
+        <div class="time-column">
+          <div class="time-slot">9 am</div>
+          <div class="time-slot">10 am</div>
+          <div class="time-slot">11 am</div>
+          <div class="time-slot">12 pm</div>
+          <div class="time-slot">1 pm</div>
+          <div class="time-slot">2 pm</div>
+          <div class="time-slot">3 pm</div>
+          <div class="time-slot">4 pm</div>
+        </div>
+        <div class="schedule-column">
+          <div class="event" style="grid-row: 1 / 2">
+            Peter
+            <br />
+            Remote Support
+          </div>
+          <div class="event" style="grid-row: 2 / 3">
+            Mike
+            <br />
+            Solutions Discovery
+          </div>
+          <div class="event" style="grid-row: 3 / 4">
+            Paul
+            <br />
+            Solutions Discovery
+          </div>
+          <div class="event" style="grid-row: 4 / 5">
+            Ryan
+            <br />
+            Solutions Discovery
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
